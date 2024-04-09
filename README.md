@@ -10,6 +10,8 @@ Sistema gerenciador de filmes feito para a matéria de BAN2 (banco de dados 2) d
 # Descritivo do sistema
 
 # Tecnologias usadas
+- Java
+- PostgreSQL
 
 # Banco de dados
 ## Modelo conceitual
