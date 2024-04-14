@@ -1,13 +1,42 @@
 package dao;
 
 import connection.DataBaseConnection;
+import model.Diretor;
 import model.Filme;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashSet;
+import java.util.Set;
 
 public class FilmeDAO {
+
+    public Set<Filme> getAll() {
+        Set<Filme> filmes = new HashSet<>();
+        try {
+            Connection conn = DataBaseConnection.getInstance().getConn();
+            String sql = "SELECT * FROM diretores";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Filme filme = new Filme();
+                filme.setIdFilme(rs.getLong("id_filme"));
+                filme.setDuracao(rs.getInt("duracao"));
+                filme.setAno(rs.getInt("ano"));
+                filme.setIdDiretor(rs.getLong("id_diretor"));
+                filme.setIdPais(rs.getLong("id_pais"));
+                filme.setSinopse(rs.getString("sinopse"));
+                filmes.add(filme);
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao buscar os países cadastrados!");
+        }
+
+        return filmes;
+    }
 
     public final void save(Filme filme) {
         try {
