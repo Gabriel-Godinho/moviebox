@@ -20,4 +20,8 @@ public class PaisOrigem implements Serializable {
 
     private String nomePais;
 
+    public PaisOrigem(String nomePais) {
+        this.nomePais = nomePais;
+    }
+
 }

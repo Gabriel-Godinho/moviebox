@@ -20,4 +20,9 @@ public class Diretor implements Serializable {
 
     private String nomeDiretor;
 
+    // Construtor com apenas o nome do diretor
+    public Diretor(String nomeDiretor) {
+        this.nomeDiretor = nomeDiretor;
+    }
+
 }

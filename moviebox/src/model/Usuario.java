@@ -23,4 +23,10 @@ public class Usuario implements Serializable {
 
     private String senha;
 
+    // Construtor com todos os atributos menos o id do usuário
+    public Usuario(String nomeUser, String senha) {
+        this.nomeUser = nomeUser;
+        this.senha = senha;
+    }
+
 }

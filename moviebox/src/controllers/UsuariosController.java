@@ -1,6 +1,8 @@
 package controllers;
 
 import model.Usuario;
+
+import java.math.BigInteger;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -15,7 +17,7 @@ public class UsuariosController {
         String senha = input.next();
         System.out.print("Confirmar senha: ");
         String confirmaSenha = input.next();
-        Usuario user = new Usuario(nomeUser, senha);
+        Usuario user = new Usuario(BigInteger.ONE, nomeUser, senha);
         //Usuario.create(user, connection);
         System.out.println("Usuário criado com sucesso!!");
     }
