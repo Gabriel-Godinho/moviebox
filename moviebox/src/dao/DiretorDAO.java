@@ -2,12 +2,37 @@ package dao;
 
 import connection.DataBaseConnection;
 import model.Diretor;
+import model.PaisOrigem;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashSet;
+import java.util.Set;
 
 public class DiretorDAO {
+
+    public Set<Diretor> getAll() {
+        Set<Diretor> diretores = new HashSet<>();
+        try {
+            Connection conn = DataBaseConnection.getInstance().getConn();
+            String sql = "SELECT * FROM diretores";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Diretor diretor = new Diretor();
+                diretor.setIdDiretor(rs.getLong("id_diretor"));
+                diretor.setNomeDiretor(rs.getString("nome_diretor"));
+                diretores.add(diretor);
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao buscar os países cadastrados!");
+        }
+
+        return diretores;
+    }
 
     public void save(Diretor diretor) {
         try {
