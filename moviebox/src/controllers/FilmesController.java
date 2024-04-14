@@ -3,8 +3,6 @@ package controllers;
 import dao.FilmeDAO;
 import model.Filme;
 
-import java.sql.Connection;
-
 public class FilmesController {
 
     private final FilmeDAO filmeDAO = new FilmeDAO();
@@ -31,6 +29,7 @@ public class FilmesController {
     }
 
     public void editarFilme(int idFilme, String nomeFilme, int duracao, int ano, int idDiretor, int idPais, String sinopse) {
-        filmeDAO.update(idFilme, nomeFilme, duracao, ano, idDiretor, idPais, sinopse);
+        Filme filme = new Filme(idFilme, nomeFilme, duracao, ano, idDiretor, idPais, sinopse);
+        filmeDAO.update(filme);
     }
 }

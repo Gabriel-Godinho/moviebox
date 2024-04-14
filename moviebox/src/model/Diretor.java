@@ -19,10 +19,12 @@ public class Diretor implements Serializable {
     private long idDiretor;
 
     private String nomeDiretor;
+    private String nacionalidade;
 
     // Construtor com apenas o nome do diretor
-    public Diretor(String nomeDiretor) {
+    public Diretor(String nomeDiretor, String nacionalidade) {
         this.nomeDiretor = nomeDiretor;
+        this.nacionalidade = nacionalidade;
     }
 
 }
