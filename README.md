@@ -12,8 +12,12 @@ Sistema gerenciador de filmes feito para a matéria de BAN2 (banco de dados 2) d
 # Tecnologias usadas
 - Java
 - PostgreSQL
+- AWS RDS
 
 # Banco de dados
+
+Foi criada uma instância de um banco de dados Postgres no RDS (Relational Database Service) da AWS.
+
 ## Modelo conceitual
 ## Dicionário de dados (modelo lógico)
 
