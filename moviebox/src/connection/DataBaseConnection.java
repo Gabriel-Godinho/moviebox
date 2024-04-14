@@ -10,10 +10,20 @@ public class DataBaseConnection {
     private static DataBaseConnection instance;
 
     private DataBaseConnection() throws SQLException {
-        final String connectionString = "bancodados2.cf6gg8ueyt35.sa-east-1.rds.amazonaws.com";
-        final String user = "postgres";
-        final String pass = "moviebox235689";
-        this.CONN = DriverManager.getConnection(connectionString, user, pass);
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException e) {
+            System.out.println("Erro ao conectar no banco de dados!");
+            System.exit(1);
+        }
+
+        String dbName = "colecao_filmes";
+        String hostname = "bancodados2.cf6gg8ueyt35.sa-east-1.rds.amazonaws.com";
+        String port = "5432";
+        String userName = "postgres";
+        String password = "moviebox235689";
+        String jdbcUrl = String.format("jdbc:postgresql://%s:%s/%s", hostname, port, dbName);
+        this.CONN = DriverManager.getConnection(jdbcUrl, userName, password);
     }
 
     public static DataBaseConnection getInstance() throws SQLException {
