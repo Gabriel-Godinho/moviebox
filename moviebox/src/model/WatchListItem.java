@@ -16,8 +16,8 @@ public class WatchListItem implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    private BigInteger idUser;
-
     private long idFilme;
+
+    private String dataInsercaoFilme;
 
 }

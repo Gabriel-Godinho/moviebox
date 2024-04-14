@@ -21,8 +21,6 @@ public class ListaItem implements Serializable {
 
     private String nomeLista;
 
-    private BigInteger idUser;
-
     private long idFilme;
 
 }
