@@ -1,5 +1,7 @@
 import connection.DataBaseConnection;
 import controllers.*;
+import model.Filme;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Scanner;
