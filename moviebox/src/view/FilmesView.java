@@ -49,8 +49,9 @@ public class FilmesView {
         System.out.print(" ID do filme que deseja editar/excluir: ");
             int idFilme = input.nextInt();
         System.out.println("------------------------------------------------");
-        System.out.println(" Para EDITAR digite [1]: ");
-        System.out.println(" Para EXCLUIR digite [2]: ");
+        System.out.println(" Para EDITAR digite [1] ");
+        System.out.println(" Para EXCLUIR digite [2] ");
+        System.out.print(" Sua escolha: ");
             escolha = input.nextInt();
         System.out.println("------------------------------------------------");
 

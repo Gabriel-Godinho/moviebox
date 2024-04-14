@@ -1,63 +1,56 @@
 import controllers.*;
-import model.WatchList;
 import view.DiretoresView;
 import view.FilmesView;
 import view.PaisesView;
 import view.WatchlistView;
-
-import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args)  {
 
-        int escolha = 0;
+        int escolha;
 
         do{
             escolha = menu();
-            try {
-                switch (escolha) {
-                    case 1:
-                        new FilmesView().cadastro();
-                        break;
-                    case 2:
-                        new FilmesView().edicao();
-                        break;
-                    case 3:
-                        new FilmesController().listarFilmes();
-                        break;
-                    case 4:
-                        new DiretoresView().cadastro();
-                        break;
-                    case 5:
-                        new DiretoresView().edicao();
-                        break;
-                    case 6:
-                        new DiretoresController().listarDiretores();
-                        break;
-                    case 7:
-                        new PaisesView().cadastro();
-                        break;
-                    case 8:
-                        new PaisesView().edicao();
-                        break;
-                    case 9:
-                        new PaisesController().listarPaises();
-                        break;
-                    case 10:
-                        new WatchlistView().inserir();
-                        break;
-                    case 11:
-                        new WatchlistView().remover();
-                        break;
-                    case 12:
-                        new WatchlistsController().mostrar();
-                        break;
-                    case 13:
-                        System.exit(0);
-                }
-            } catch(SQLException ex) {
-                System.out.println(ex.getMessage());
+            switch (escolha) {
+                case 1:
+                    new FilmesView().cadastro();
+                    break;
+                case 2:
+                    new FilmesView().edicao();
+                    break;
+                case 3:
+                    new FilmesController().listarFilmes();
+                    break;
+                case 4:
+                    new DiretoresView().cadastro();
+                    break;
+                case 5:
+                    new DiretoresView().edicao();
+                    break;
+                case 6:
+                    new DiretoresController().listarDiretores();
+                    break;
+                case 7:
+                    new PaisesView().cadastro();
+                    break;
+                case 8:
+                    new PaisesView().edicao();
+                    break;
+                case 9:
+                    new PaisesController().listarPaises();
+                    break;
+                case 10:
+                    new WatchlistView().inserir();
+                    break;
+                case 11:
+                    new WatchlistView().remover();
+                    break;
+                case 12:
+                    new WatchlistsController().mostrar();
+                    break;
+                case 13:
+                    System.exit(0);
             }
         } while(escolha > 0 && escolha < 14);
     }
