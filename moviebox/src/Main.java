@@ -1,26 +1,61 @@
-import view.Entrar;
-
+import connection.DataBaseConnection;
+import controllers.*;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Scanner;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
+        Connection connection = DataBaseConnection.getInstance().getConn();
 
-        Scanner scanner = new Scanner(System.in);
+        int escolha = 0;
 
+        do{
+            escolha = menu();
+            try {
+                switch (escolha) {
+                    case 1:
+                        new FilmesController().cadastrarFilme(connection);
+                        break;
+                    case 2:
+                        new FilmesController().listarFilmes(connection);
+                        break;
+                    case 3:
+                        new DiretoresController().listarDiretores(connection);
+                        break;
+                    case 4:
+                        new PaisesController().listarPaises(connection);
+                        break;
+                    case 5:
+                        new ListasController().verListas(connection);
+                        break;
+                    case 6:
+                        new WatchlistsController().verWatchlist(connection);
+                        break;
+                    case 7:
+                        System.exit(0);
+                }
+            } catch(SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+        } while(escolha > 0 && escolha < 8);
+
+    }
+
+    private static int menu() {
         System.out.println("-----------------------------------");
-        System.out.println("        Bem-vindo ao Sistema     ");
+        System.out.println("             Filmoteca            ");
         System.out.println("-----------------------------------");
-        System.out.println(" Opções:                         ");
-        System.out.println(" 1. Entrar                       ");
-        System.out.println(" 2. Criar conta                  ");
-        System.out.println(" 3. Sair                         ");
+        System.out.println(" 1. Cadastrar filme");
+        System.out.println(" 2. Listar filmes");
+        System.out.println(" 3. Listar diretores");
+        System.out.println(" 4. Listar países");
+        System.out.println(" 5. Ver listas");
+        System.out.println(" 6. Ver watchlist");
+        System.out.println(" 7. Sair");
         System.out.println("-----------------------------------");
-        System.out.println(" Por favor, digite o número      ");
-        System.out.print(" correspondente à sua escolha: ");
-
-        int escolha = scanner.nextInt();
-
+        System.out.print(" Escolha uma opção: ");
+        Scanner input = new Scanner(System.in);
+        return input.nextInt();
     }
 }
