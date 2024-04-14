@@ -42,7 +42,6 @@ public class FilmeDAO {
         try {
             Connection conn = DataBaseConnection.getInstance().getConn();
             String sql = "INSERT INTO filmes(nome_filme, duracao, ano, id_diretor, id_pais, sinopse) VALUE(?, ?, ?, ?, ?, ?)";
-
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, filme.getNomeFilme());
             preparedStatement.setInt(2, filme.getDuracao());
@@ -60,7 +59,6 @@ public class FilmeDAO {
         try {
             Connection conn = DataBaseConnection.getInstance().getConn();
             String sql = "UPDATE filmes SET nome_filme = ?, duracao = ?, ano = ?, id_diretor = ?, id_pais = ?, sinopse = ? WHERE id_filme = ?";
-
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, filme.getNomeFilme());
             preparedStatement.setInt(2, filme.getDuracao());
