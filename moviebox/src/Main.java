@@ -1,6 +1,7 @@
 import connection.DataBaseConnection;
 import controllers.*;
 import model.Filme;
+import view.CadastrarFilme;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -8,7 +9,6 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws SQLException {
-        Connection connection = DataBaseConnection.getInstance().getConn();
 
         int escolha = 0;
 
@@ -17,7 +17,7 @@ public class Main {
             try {
                 switch (escolha) {
                     case 1:
-                        new FilmesController().cadastrarFilme(connection);
+                        new CadastrarFilme().cadastro();
                         break;
                     case 2:
                         new FilmesController().listarFilmes(connection);
