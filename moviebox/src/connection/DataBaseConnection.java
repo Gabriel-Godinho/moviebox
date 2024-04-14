@@ -16,7 +16,7 @@ public class DataBaseConnection {
         this.CONN = DriverManager.getConnection(connectionString, user, pass);
     }
 
-    public static DataBaseConnection getInstance() throws SQLException{
+    public static DataBaseConnection getInstance() throws SQLException {
         if(instance == null) instance = new DataBaseConnection();
 
         return instance;

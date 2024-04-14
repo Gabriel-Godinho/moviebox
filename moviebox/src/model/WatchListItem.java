@@ -4,20 +4,20 @@ import lombok.*;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.math.BigInteger;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString @EqualsAndHashCode
-public class PaisOrigem implements Serializable {
+public class WatchListItem implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
 
-    @ToString.Exclude
-    private long idPais;
+    private BigInteger idUser;
 
-    private String nomePais;
+    private long idFilme;
 
 }
