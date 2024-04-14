@@ -58,16 +58,56 @@ public class FilmeDAO {
     public final void update(Filme filme) {
         try {
             Connection conn = DataBaseConnection.getInstance().getConn();
-            String sql = "UPDATE filmes SET nome_filme = ?, duracao = ?, ano = ?, id_diretor = ?, id_pais = ?, sinopse = ? WHERE id_filme = ?";
-            PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setString(1, filme.getNomeFilme());
-            preparedStatement.setInt(2, filme.getDuracao());
-            preparedStatement.setInt(3, filme.getDuracao());
-            preparedStatement.setLong(4, filme.getIdDiretor());
-            preparedStatement.setLong(5, filme.getIdPais());
-            preparedStatement.setString(6, filme.getSinopse());
-            preparedStatement.setLong(7, filme.getIdFilme());
-            preparedStatement.executeUpdate();
+            StringBuilder sb = new StringBuilder("UPDATE filmes SET");
+
+            if (!filme.getNomeFilme().isBlank()) sb.append(" nome_filme = ?");
+
+            if (filme.getDuracao() != 0) {
+                if (!sb.toString().endsWith("SET")) sb.append(",");
+                sb.append(" duracao = ?");
+            }
+
+            if (filme.getDuracao() != 0) {
+                if (!sb.toString().endsWith("SET")) sb.append(",");
+                sb.append(" ano = ?");
+            }
+
+            if (filme.getIdDiretor() != 0) {
+                if (!sb.toString().endsWith("SET")) sb.append(",");
+                sb.append(" id_diretor = ?");
+            }
+
+            if (filme.getIdPais() != 0) {
+                if (!sb.toString().endsWith("SET")) sb.append(",");
+                sb.append(" id_pais = ?");
+            }
+
+            if (!filme.getSinopse().isBlank()) {
+                if (!sb.toString().endsWith("SET")) sb.append(",");
+                sb.append(" sinopse = ?");
+            }
+
+            if (!sb.toString().endsWith("SET")) sb.append(" WHERE id_filme = ?");
+
+
+            PreparedStatement preparedStatement = conn.prepareStatement(sb.toString());
+
+            if (!filme.getNomeFilme().isBlank()) preparedStatement.setString(1, filme.getNomeFilme());
+
+            if (filme.getDuracao() != 0) preparedStatement.setInt(2, filme.getDuracao());
+
+            if (filme.getDuracao() != 0) preparedStatement.setInt(3, filme.getDuracao());
+
+            if (filme.getIdDiretor() != 0) preparedStatement.setLong(4, filme.getIdDiretor());
+
+            if (filme.getIdPais() != 0) preparedStatement.setLong(5, filme.getIdPais());
+
+            if (!filme.getSinopse().isBlank()) preparedStatement.setString(6, filme.getSinopse());
+
+            if (!sb.toString().endsWith("SET")) {
+                preparedStatement.setLong(7, filme.getIdFilme());
+                preparedStatement.executeUpdate();
+            }
         } catch (SQLException e) {
             System.out.println("Erro ao inserir o novo filme!");
         }

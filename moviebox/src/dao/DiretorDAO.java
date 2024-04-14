@@ -50,11 +50,12 @@ public class DiretorDAO {
     public void update(Diretor diretor) {
         try {
             Connection conn = DataBaseConnection.getInstance().getConn();
-            String sql = "UPDATE diretores SET nome_diretor = ?";
-
-            PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setString(1, diretor.getNomeDiretor());
-            preparedStatement.executeUpdate();
+            if (!diretor.getNomeDiretor().isBlank()) {
+                String sql = "UPDATE diretores SET nome_diretor = ?";
+                PreparedStatement preparedStatement = conn.prepareStatement(sql);
+                preparedStatement.setString(1, diretor.getNomeDiretor());
+                preparedStatement.executeUpdate();
+            }
         } catch (SQLException e) {
             System.out.println("Erro ao editar o diretor!");
         }

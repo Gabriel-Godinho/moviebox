@@ -49,11 +49,12 @@ public class PaisOrigemDAO {
     public void update(PaisOrigem paisOrigem) {
         try {
             Connection conn = DataBaseConnection.getInstance().getConn();
-            String sql = "UPDATE paises_origem SET nome_pais = ?";
-
-            PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setString(1, paisOrigem.getNomePais());
-            preparedStatement.executeUpdate();
+            if (!paisOrigem.getNomePais().isBlank()) {
+                String sql = "UPDATE paises_origem SET nome_pais = ?";
+                PreparedStatement preparedStatement = conn.prepareStatement(sql);
+                preparedStatement.setString(1, paisOrigem.getNomePais());
+                preparedStatement.executeUpdate();
+            }
         } catch (SQLException e) {
             System.out.println("Erro ao editar o país de origem!");
         }
