@@ -18,6 +18,8 @@ Sistema gerenciador de filmes feito para a matéria de BAN2 (banco de dados 2) d
 
 Foi criada uma instância de um banco de dados Postgres no RDS (Relational Database Service) da AWS.
 
+AWS RDS (Relationa Database Service): https://aws.amazon.com/pt/rds/
+
 ## Modelo conceitual
 ## Dicionário de dados (modelo lógico)
 
