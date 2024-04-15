@@ -12,18 +12,19 @@ import java.util.ArrayList;
 
 public class WatchListDAO {
 
-    public WatchList getWatchList() {
+    public final WatchList getWatchList() {
         WatchList watchList = new WatchList(new ArrayList<>());
+
         try {
             Connection conn = DataBaseConnection.getInstance().getConn();
             String sql = "SELECT * FROM watchlist";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            ResultSet rs = preparedStatement.executeQuery();
+            ResultSet resultSet = preparedStatement.executeQuery();
 
-            while (rs.next()) {
+            while (resultSet.next()) {
                 WatchListItem watchListItem = new WatchListItem();
-                watchListItem.setIdFilme(rs.getLong("id_filme"));
-                watchListItem.setDataInsercaoFilme(rs.getString("data_insercao_filme"));
+                watchListItem.setIdFilme(resultSet.getLong("id_filme"));
+                watchListItem.setDataInsercaoFilme(resultSet.getString("data_insercao_filme"));
                 watchList.getItensWatchList().add(watchListItem);
             }
 
@@ -34,7 +35,7 @@ public class WatchListDAO {
         return watchList;
     }
 
-    public void saveWatchListItem(WatchListItem watchListItem) {
+    public final void saveWatchListItem(WatchListItem watchListItem) {
         try {
             Connection conn = DataBaseConnection.getInstance().getConn();
             String sql = "INSERT INTO watchlist(id_filme, data_insercao_filme) VALUES(?, ?)";
@@ -45,11 +46,11 @@ public class WatchListDAO {
 
             System.out.println("Filme adicionado com sucesso!");
         } catch (SQLException e) {
-            System.out.println("Erro ao salvar na watchlist!");
+            System.out.println("Erro ao salvar o filme na watchlist!");
         }
     }
 
-    public void deleteWatchListItem(long idFilme) {
+    public final void deleteWatchListItem(long idFilme) {
         try {
             Connection conn = DataBaseConnection.getInstance().getConn();
             String sql = "DELETE FROM watchlist WHERE id_filme = ?";
@@ -59,7 +60,8 @@ public class WatchListDAO {
 
             System.out.println("Filme removido da watchlist com sucesso!");
         } catch (SQLException e) {
-            System.out.println("Erro ao remover da watchlist!");
+            System.out.println("Erro ao remover o filme da watchlist!");
         }
     }
+    
 }

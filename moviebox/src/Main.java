@@ -6,83 +6,86 @@ import view.WatchlistView;
 import java.util.Scanner;
 
 public class Main {
+
     public static void main(String[] args)  {
-
         int escolha;
+        Scanner input = new Scanner(System.in);
 
-        Scanner scanner = new Scanner(System.in);
-
-        do{
+        do {
             escolha = menu();
+
             switch (escolha) {
                 case 1:
                     new FilmesView().cadastro();
                     System.out.println("Para voltar ao menu tecle [0]");
-                    scanner.next();
+                    input.next();
                     break;
                 case 2:
                     new FilmesView().edicao();
                     System.out.println("Para voltar ao menu tecle [0]");
-                    scanner.next();
+                    input.next();
                     break;
                 case 3:
                     new FilmesController().listarFilmes();
                     System.out.println("Para voltar ao menu tecle [0]");
-                    scanner.next();
+                    input.next();
                     break;
                 case 4:
                     new DiretoresView().cadastro();
                     System.out.println("Para voltar ao menu tecle [0]");
-                    scanner.next();
+                    input.next();
                     break;
                 case 5:
                     new DiretoresView().edicao();
                     System.out.println("Para voltar ao menu tecle [0]");
-                    scanner.next();
+                    input.next();
                     break;
                 case 6:
                     new DiretoresController().listarDiretores();
                     System.out.println("Para voltar ao menu tecle [0]");
-                    scanner.next();
+                    input.next();
                     break;
                 case 7:
                     new PaisesView().cadastro();
                     System.out.println("Para voltar ao menu tecle [0]");
-                    scanner.next();
+                    input.next();
                     break;
                 case 8:
                     new PaisesView().edicao();
                     System.out.println("Para voltar ao menu tecle [0]");
-                    scanner.next();
+                    input.next();
                     break;
                 case 9:
                     new PaisesController().listarPaises();
                     System.out.println("Para voltar ao menu tecle [0]");
-                    scanner.next();
+                    input.next();
                     break;
                 case 10:
                     new WatchlistView().inserir();
                     System.out.println("Para voltar ao menu tecle [0]");
-                    scanner.next();
+                    input.next();
                     break;
                 case 11:
                     new WatchlistView().remover();
                     System.out.println("Para voltar ao menu tecle [0]");
-                    scanner.next();
+                    input.next();
                     break;
                 case 12:
                     new WatchlistsController().mostrar();
                     System.out.println("Para voltar ao menu tecle [0]");
-                    scanner.next();
+                    input.next();
                     break;
                 case 13:
                     System.exit(0);
             }
-        } while(escolha > 0 && escolha < 14);
-        scanner.close();
+        } while (escolha > 0 && escolha < 14);
+
+        input.close();
     }
 
     private static int menu() {
+        Scanner input = new Scanner(System.in);
+
         System.out.println("-----------------------------------");
         System.out.println("              Filmoteca            ");
         System.out.println("-----------------------------------");
@@ -101,7 +104,11 @@ public class Main {
         System.out.println(" 13. Sair");
         System.out.println("-----------------------------------");
         System.out.print(" Escolha uma opção: ");
-            Scanner input = new Scanner(System.in);
-        return input.nextInt();
+        int opcaoEscolhida = input.nextInt();
+
+        input.close();
+
+        return opcaoEscolhida;
     }
+    
 }

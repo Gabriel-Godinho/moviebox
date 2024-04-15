@@ -6,6 +6,11 @@ import java.sql.SQLException;
 
 public class DataBaseConnection {
 
+    private final String DB_NAME = "colecao_filmes";
+    private final String HOSTNAME = "bancodados2.cf6gg8ueyt35.sa-east-1.rds.amazonaws.com";
+    private final String PORT = "5432";
+    private final String USER_NAME = "postgres";
+    private final String PASSWORD = "moviebox235689";
     private final Connection CONN;
     private static DataBaseConnection instance;
 
@@ -13,21 +18,16 @@ public class DataBaseConnection {
         try {
             Class.forName("org.postgresql.Driver");
         } catch (ClassNotFoundException e) {
-            System.out.println("Erro ao conectar no banco de dados!");
+            System.out.println("Ocorreu um erro ao tentar estabelecer a conexão com o banco de dados!");
             System.exit(1);
         }
 
-        String dbName = "colecao_filmes";
-        String hostname = "bancodados2.cf6gg8ueyt35.sa-east-1.rds.amazonaws.com";
-        String port = "5432";
-        String userName = "postgres";
-        String password = "moviebox235689";
-        String jdbcUrl = String.format("jdbc:postgresql://%s:%s/%s", hostname, port, dbName);
-        this.CONN = DriverManager.getConnection(jdbcUrl, userName, password);
+        final String CONNECTION_URL = String.format("jdbc:postgresql://%s:%s/%s", HOSTNAME, PORT, DB_NAME);
+        this.CONN = DriverManager.getConnection(CONNECTION_URL, USER_NAME, PASSWORD);
     }
 
     public static DataBaseConnection getInstance() throws SQLException {
-        if(instance == null) instance = new DataBaseConnection();
+        if (instance == null) instance = new DataBaseConnection();
 
         return instance;
     }
