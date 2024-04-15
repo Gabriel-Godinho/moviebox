@@ -34,6 +34,25 @@ public class DiretorDAO {
         return diretores;
     }
 
+    public Diretor getById(long idDiretor) {
+        Diretor diretor = new Diretor();
+        try {
+            Connection conn = DataBaseConnection.getInstance().getConn();
+            String sql = "SELECT * FROM diretores WHERE id_diretor = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                diretor.setIdDiretor(rs.getLong("id_diretor"));
+                diretor.setNomeDiretor(rs.getString("nome_diretor"));
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao buscar os diretores cadastrados!");
+        }
+
+        return diretor;
+    }
+
     public void save(Diretor diretor) {
         try {
             Connection conn = DataBaseConnection.getInstance().getConn();

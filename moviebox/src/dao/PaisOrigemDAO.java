@@ -1,6 +1,7 @@
 package dao;
 
 import connection.DataBaseConnection;
+import model.Diretor;
 import model.PaisOrigem;
 
 import java.sql.Connection;
@@ -31,6 +32,25 @@ public class PaisOrigemDAO {
         }
 
         return paises;
+    }
+
+    public PaisOrigem getById(long idPais) {
+        PaisOrigem paisOrigem = new PaisOrigem();
+        try {
+            Connection conn = DataBaseConnection.getInstance().getConn();
+            String sql = "SELECT * FROM paises_de_origem WHERE id_pais = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                paisOrigem.setIdPais(rs.getLong("id_pais"));
+                paisOrigem.setNomePais(rs.getString("nome_pais"));
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao buscar os países cadastrados!");
+        }
+
+        return paisOrigem;
     }
 
     public void save(PaisOrigem paisOrigem) {

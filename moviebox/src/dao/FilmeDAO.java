@@ -1,7 +1,6 @@
 package dao;
 
 import connection.DataBaseConnection;
-import model.Diretor;
 import model.Filme;
 
 import java.sql.Connection;
@@ -17,7 +16,7 @@ public class FilmeDAO {
         Set<Filme> filmes = new HashSet<>();
         try {
             Connection conn = DataBaseConnection.getInstance().getConn();
-            String sql = "SELECT * FROM diretores";
+            String sql = "SELECT * FROM filmes";
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
 
