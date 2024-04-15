@@ -1,6 +1,7 @@
 package dao;
 
 import connection.DataBaseConnection;
+import model.Diretor;
 import model.Filme;
 
 import java.sql.Connection;
@@ -35,6 +36,31 @@ public class FilmeDAO {
         }
 
         return filmes;
+    }
+
+    public Filme getById(long idFilme) {
+        Filme filme = new Filme();
+        try {
+            Connection conn = DataBaseConnection.getInstance().getConn();
+            String sql = "SELECT * FROM filmes WHERE id_filme = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setLong(1, idFilme);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                filme.setIdDiretor(rs.getLong("id_filme"));
+                filme.setNomeFilme(rs.getString("nome_filme"));
+                filme.setDuracao(rs.getInt("duracao"));
+                filme.setAno(rs.getInt("ano"));
+                filme.setIdDiretor(rs.getLong("id_diretor"));
+                filme.setIdPais(rs.getLong("id_pais"));
+                filme.setSinopse(rs.getString("sinopse"));
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao buscar os diretores cadastrados!");
+        }
+
+        return filme;
     }
 
     public final void save(Filme filme) {
