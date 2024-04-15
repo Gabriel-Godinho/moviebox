@@ -92,7 +92,7 @@ public class FilmeDAO {
                 sb.append(" duracao = ?");
             }
 
-            if (filme.getDuracao() != 0) {
+            if (filme.getAno() != 0) {
                 if (!sb.toString().endsWith("SET")) sb.append(",");
                 sb.append(" ano = ?");
             }
@@ -121,7 +121,7 @@ public class FilmeDAO {
 
             if (filme.getDuracao() != 0) preparedStatement.setInt(2, filme.getDuracao());
 
-            if (filme.getDuracao() != 0) preparedStatement.setInt(3, filme.getDuracao());
+            if (filme.getAno() != 0) preparedStatement.setInt(3, filme.getAno());
 
             if (filme.getIdDiretor() != 0) preparedStatement.setLong(4, filme.getIdDiretor());
 
