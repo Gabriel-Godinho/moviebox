@@ -89,7 +89,7 @@ public class FilmeDAO {
 
             List<Object> params = new ArrayList<>();
 
-            if (!filme.getNomeFilme().isEmpty()) {
+            if (!filme.getNomeFilme().equals("0")) {
                 sb.append(" nome_filme = ?,");
                 params.add(filme.getNomeFilme());
             }
@@ -114,7 +114,7 @@ public class FilmeDAO {
                 params.add(filme.getIdPais());
             }
 
-            if (!filme.getSinopse().isEmpty()) {
+            if (!filme.getSinopse().equals("0")) {
                 sb.append(" sinopse = ?,");
                 params.add(filme.getSinopse());
             }

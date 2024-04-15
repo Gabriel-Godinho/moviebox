@@ -1,7 +1,6 @@
 package controllers;
 
 import dao.PaisOrigemDAO;
-import model.Diretor;
 import model.PaisOrigem;
 
 public class PaisesController {
@@ -20,6 +19,9 @@ public class PaisesController {
     }
 
     public void listarPaises() {
+        System.out.println("------------------------------------------------");
+        System.out.println("                     PAÍSES                     ");
+        System.out.println("------------------------------------------------");
         for(PaisOrigem pais : paisDAO.getAll()) {
             System.out.println( "Nome: " + pais.getNomePais());
             System.out.println("------------------------------------------------");

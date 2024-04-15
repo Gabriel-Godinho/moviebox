@@ -1,9 +1,7 @@
 package dao;
 
 import connection.DataBaseConnection;
-import model.Diretor;
 import model.PaisOrigem;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -57,13 +55,15 @@ public class PaisOrigemDAO {
     public void save(PaisOrigem paisOrigem) {
         try {
             Connection conn = DataBaseConnection.getInstance().getConn();
-            String sql = "INSERT INTO paises_origem(nome_pais) VALUE(?)";
+            String sql = "INSERT INTO paises_de_origem(nome_pais) VALUES(?)";
 
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, paisOrigem.getNomePais());
             preparedStatement.executeUpdate();
+
+            System.out.println("País cadastrado com sucesso!");
         } catch (SQLException e) {
-            System.out.println("Erro ao inserir o novo país de origem!");
+            System.out.println("Erro ao cadastrar novo país!");
         }
     }
 
@@ -71,10 +71,13 @@ public class PaisOrigemDAO {
         try {
             Connection conn = DataBaseConnection.getInstance().getConn();
             if (!paisOrigem.getNomePais().isBlank()) {
-                String sql = "UPDATE paises_origem SET nome_pais = ?";
+                String sql = "UPDATE paises_de_origem SET nome_pais = ? WHERE id_pais = ?";
                 PreparedStatement preparedStatement = conn.prepareStatement(sql);
                 preparedStatement.setString(1, paisOrigem.getNomePais());
+                preparedStatement.setLong(2, paisOrigem.getIdPais());
                 preparedStatement.executeUpdate();
+
+                System.out.println("País atualizado com sucesso!");
             }
         } catch (SQLException e) {
             System.out.println("Erro ao editar o país de origem!");
@@ -84,10 +87,12 @@ public class PaisOrigemDAO {
     public final void delete(long idPais) {
         try {
             Connection conn = DataBaseConnection.getInstance().getConn();
-            String sql = "DELETE FROM paises_origem WHERE id_pais = ?";
+            String sql = "DELETE FROM paises_de_origem WHERE id_pais = ?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setLong(1, idPais);
             preparedStatement.executeUpdate();
+
+            System.out.println("País excluído com sucesso!");
         } catch (SQLException e) {
             System.out.println("Erro ao excluir país de origem!");
         }

@@ -32,7 +32,7 @@ public class DiretoresView {
     public void edicao() {
         Scanner input = new Scanner(System.in);
 
-        int escolha = 0;
+        int escolha;
 
         System.out.println("------------------------------------------------");
         System.out.println("          Diretores - Edição/Exclusão           ");
@@ -55,7 +55,7 @@ public class DiretoresView {
                 String nomeDiretor = input.nextLine();
             System.out.println("----------------------------------------------");
             System.out.print(" Nacionalidade: ");
-//                input.nextLine();
+                input.nextLine();
                 String nacionalidade = input.nextLine();
             System.out.println("----------------------------------------------");
 

@@ -2,8 +2,6 @@ package dao;
 
 import connection.DataBaseConnection;
 import model.Diretor;
-import model.PaisOrigem;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -72,25 +70,23 @@ public class DiretorDAO {
         }
     }
 
-    public void update(Diretor diretor) {
+    public final void update(Diretor diretor) {
         try {
             Connection conn = DataBaseConnection.getInstance().getConn();
             StringBuilder sb = new StringBuilder("UPDATE diretores SET");
 
-            List<Object> params = new ArrayList<>(); // List to store parameters
+            List<Object> params = new ArrayList<>();
 
-            // Check for non-empty values and non-zero numeric values
             if (!diretor.getNomeDiretor().isEmpty()) {
                 sb.append(" nome_diretor = ?,");
                 params.add(diretor.getNomeDiretor());
             }
 
-            if (!diretor.getNacionalidade().isEmpty()) {
+            if (diretor.getNacionalidade().isEmpty()) {
                 sb.append(" nacionalidade = ?,");
                 params.add(diretor.getNacionalidade());
             }
 
-            // Remove the trailing comma if no fields were updated
             if (sb.toString().endsWith(",")) {
                 sb.deleteCharAt(sb.length() - 1);
             }
@@ -100,13 +96,14 @@ public class DiretorDAO {
 
             PreparedStatement preparedStatement = conn.prepareStatement(sb.toString());
 
-            // Set parameters based on the list
             for (int i = 0; i < params.size(); i++) {
                 Object value = params.get(i);
                 if (value instanceof String) {
                     preparedStatement.setString(i + 1, (String) value);
-                } else {
-                    // Handle other data types if needed
+                } else if (value instanceof Integer) {
+                    preparedStatement.setInt(i + 1, (Integer) value);
+                } else if (value instanceof Long) {
+                    preparedStatement.setLong(i + 1, (Long) value);
                 }
             }
 
@@ -125,6 +122,8 @@ public class DiretorDAO {
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setLong(1, idDiretor);
             preparedStatement.executeUpdate();
+
+            System.out.println("Diretor excluído com sucesso!");
         } catch (SQLException e) {
             System.out.println("Erro ao excluir o diretor!");
         }

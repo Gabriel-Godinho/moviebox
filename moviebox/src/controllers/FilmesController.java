@@ -33,6 +33,8 @@ public class FilmesController {
 
     public void listarFilmes() {
         System.out.println("------------------------------------------------");
+        System.out.println("                     FILMES                     ");
+        System.out.println("------------------------------------------------");
         for(Filme filme : filmeDAO.getAll()) {
             System.out.println( "Nome: " + filme.getNomeFilme());
             System.out.println( "Diretor: " + diretorDAO.getById(filme.getIdDiretor()).getNomeDiretor());

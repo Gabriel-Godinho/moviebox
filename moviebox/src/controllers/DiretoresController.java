@@ -2,7 +2,6 @@ package controllers;
 
 import dao.DiretorDAO;
 import model.Diretor;
-import model.Filme;
 
 public class DiretoresController {
 
@@ -22,6 +21,9 @@ public class DiretoresController {
     }
 
     public void listarDiretores() {
+        System.out.println("------------------------------------------------");
+        System.out.println("                    DIRETORES                   ");
+        System.out.println("------------------------------------------------");
         for(Diretor diretor : diretorDAO.getAll()) {
             System.out.println( "Nome: " + diretor.getNomeDiretor());
             System.out.println( "Nacionalidade: " + diretor.getNacionalidade());

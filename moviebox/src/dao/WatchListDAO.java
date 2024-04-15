@@ -42,8 +42,10 @@ public class WatchListDAO {
             preparedStatement.setLong(1, watchListItem.getIdFilme());
             preparedStatement.setString(2, watchListItem.getDataInsercaoFilme());
             preparedStatement.executeUpdate();
+
+            System.out.println("Filme adicionado com sucesso!");
         } catch (SQLException e) {
-            System.out.println("Erro ao mostrar a watchlist!");
+            System.out.println("Erro ao salvar na watchlist!");
         }
     }
 
@@ -54,9 +56,10 @@ public class WatchListDAO {
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setLong(1, idFilme);
             preparedStatement.executeUpdate();
+
+            System.out.println("Filme removido da watchlist com sucesso!");
         } catch (SQLException e) {
-            System.out.println("Erro ao mostrar a watchlist!");
+            System.out.println("Erro ao remover da watchlist!");
         }
     }
-
 }

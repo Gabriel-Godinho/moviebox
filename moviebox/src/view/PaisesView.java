@@ -1,6 +1,5 @@
 package view;
 
-import controllers.DiretoresController;
 import controllers.PaisesController;
 
 import java.util.Scanner;
@@ -16,7 +15,7 @@ public class PaisesView {
         System.out.println("                Países - Cadastro               ");
         System.out.println("------------------------------------------------");
         System.out.print(" Nome do país: ");
-            String nomePais = input.next();
+            String nomePais = input.nextLine();
         System.out.println("----------------------------------------------");
 
         controller.cadastrarPais(nomePais);
@@ -25,7 +24,7 @@ public class PaisesView {
     public void edicao() {
         Scanner input = new Scanner(System.in);
 
-        int escolha = 0;
+        int escolha;
 
         System.out.println("------------------------------------------------");
         System.out.println("            Países - Edição/Exclusão            ");
@@ -41,7 +40,8 @@ public class PaisesView {
 
         if(escolha == 1) {
             System.out.print(" Nome do país: ");
-                String nomePais = input.next();
+                input.nextLine();
+                String nomePais = input.nextLine();
             System.out.println("----------------------------------------------");
 
             controller.editarPais(idPais, nomePais);
