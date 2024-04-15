@@ -1,14 +1,14 @@
 package dao;
 
 import connection.DataBaseConnection;
-import model.Diretor;
 import model.Filme;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class FilmeDAO {
@@ -23,6 +23,7 @@ public class FilmeDAO {
 
             while (rs.next()) {
                 Filme filme = new Filme();
+                filme.setNomeFilme(rs.getString("nome_filme"));
                 filme.setIdFilme(rs.getLong("id_filme"));
                 filme.setDuracao(rs.getInt("duracao"));
                 filme.setAno(rs.getInt("ano"));
@@ -66,15 +67,16 @@ public class FilmeDAO {
     public final void save(Filme filme) {
         try {
             Connection conn = DataBaseConnection.getInstance().getConn();
-            String sql = "INSERT INTO filmes(nome_filme, duracao, ano, id_diretor, id_pais, sinopse) VALUE(?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO filmes(nome_filme, duracao, ano, id_diretor, id_pais, sinopse) VALUES(?, ?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, filme.getNomeFilme());
             preparedStatement.setInt(2, filme.getDuracao());
-            preparedStatement.setInt(3, filme.getDuracao());
+            preparedStatement.setInt(3, filme.getAno());
             preparedStatement.setLong(4, filme.getIdDiretor());
             preparedStatement.setLong(5, filme.getIdPais());
             preparedStatement.setString(6, filme.getSinopse());
             preparedStatement.executeUpdate();
+            System.out.println("Filme adicionado com sucesso!");
         } catch (SQLException e) {
             System.out.println("Erro ao inserir o novo filme!");
         }
@@ -85,56 +87,63 @@ public class FilmeDAO {
             Connection conn = DataBaseConnection.getInstance().getConn();
             StringBuilder sb = new StringBuilder("UPDATE filmes SET");
 
-            if (!filme.getNomeFilme().isBlank()) sb.append(" nome_filme = ?");
+            List<Object> params = new ArrayList<>();
+
+            if (!filme.getNomeFilme().isEmpty()) {
+                sb.append(" nome_filme = ?,");
+                params.add(filme.getNomeFilme());
+            }
 
             if (filme.getDuracao() != 0) {
-                if (!sb.toString().endsWith("SET")) sb.append(",");
-                sb.append(" duracao = ?");
+                sb.append(" duracao = ?,");
+                params.add(filme.getDuracao());
             }
 
             if (filme.getAno() != 0) {
-                if (!sb.toString().endsWith("SET")) sb.append(",");
-                sb.append(" ano = ?");
+                sb.append(" ano = ?,");
+                params.add(filme.getAno());
             }
 
             if (filme.getIdDiretor() != 0) {
-                if (!sb.toString().endsWith("SET")) sb.append(",");
-                sb.append(" id_diretor = ?");
+                sb.append(" id_diretor = ?,");
+                params.add(filme.getIdDiretor());
             }
 
             if (filme.getIdPais() != 0) {
-                if (!sb.toString().endsWith("SET")) sb.append(",");
-                sb.append(" id_pais = ?");
+                sb.append(" id_pais = ?,");
+                params.add(filme.getIdPais());
             }
 
-            if (!filme.getSinopse().isBlank()) {
-                if (!sb.toString().endsWith("SET")) sb.append(",");
-                sb.append(" sinopse = ?");
+            if (!filme.getSinopse().isEmpty()) {
+                sb.append(" sinopse = ?,");
+                params.add(filme.getSinopse());
             }
 
-            if (!sb.toString().endsWith("SET")) sb.append(" WHERE id_filme = ?");
+            if (sb.toString().endsWith(",")) {
+                sb.deleteCharAt(sb.length() - 1);
+            }
 
+            sb.append(" WHERE id_filme = ?");
+            params.add(filme.getIdFilme());
 
             PreparedStatement preparedStatement = conn.prepareStatement(sb.toString());
 
-            if (!filme.getNomeFilme().isBlank()) preparedStatement.setString(1, filme.getNomeFilme());
-
-            if (filme.getDuracao() != 0) preparedStatement.setInt(2, filme.getDuracao());
-
-            if (filme.getAno() != 0) preparedStatement.setInt(3, filme.getAno());
-
-            if (filme.getIdDiretor() != 0) preparedStatement.setLong(4, filme.getIdDiretor());
-
-            if (filme.getIdPais() != 0) preparedStatement.setLong(5, filme.getIdPais());
-
-            if (!filme.getSinopse().isBlank()) preparedStatement.setString(6, filme.getSinopse());
-
-            if (!sb.toString().endsWith("SET")) {
-                preparedStatement.setLong(7, filme.getIdFilme());
-                preparedStatement.executeUpdate();
+            for (int i = 0; i < params.size(); i++) {
+                Object value = params.get(i);
+                if (value instanceof String) {
+                    preparedStatement.setString(i + 1, (String) value);
+                } else if (value instanceof Integer) {
+                    preparedStatement.setInt(i + 1, (Integer) value);
+                } else if (value instanceof Long) {
+                    preparedStatement.setLong(i + 1, (Long) value);
+                }
             }
+
+            preparedStatement.executeUpdate();
+
+            System.out.println("Filme alterado com sucesso!");
         } catch (SQLException e) {
-            System.out.println("Erro ao inserir o novo filme!");
+            System.out.println("Erro ao alterar filme!");
         }
     }
 
@@ -145,8 +154,10 @@ public class FilmeDAO {
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setLong(1, idFilme);
             preparedStatement.executeUpdate();
+
+            System.out.println("Filme excluído com sucesso!");
         } catch (SQLException e) {
-            System.out.println("Erro ao inserir o novo filme!");
+            System.out.println("Erro ao deletar filme!");
         }
     }
 

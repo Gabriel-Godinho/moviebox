@@ -37,7 +37,7 @@ public class WatchListDAO {
     public void saveWatchListItem(WatchListItem watchListItem) {
         try {
             Connection conn = DataBaseConnection.getInstance().getConn();
-            String sql = "INSERT INTO watchlists(id_filme, data_insercao_filme) VALUES(?, ?)";
+            String sql = "INSERT INTO watchlist(id_filme, data_insercao_filme) VALUES(?, ?)";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setLong(1, watchListItem.getIdFilme());
             preparedStatement.setString(2, watchListItem.getDataInsercaoFilme());
@@ -50,7 +50,7 @@ public class WatchListDAO {
     public void deleteWatchListItem(long idFilme) {
         try {
             Connection conn = DataBaseConnection.getInstance().getConn();
-            String sql = "DELETE FROM watchlists WHERE id_filme = ?";
+            String sql = "DELETE FROM watchlist WHERE id_filme = ?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setLong(1, idFilme);
             preparedStatement.executeUpdate();

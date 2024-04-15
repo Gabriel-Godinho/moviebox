@@ -17,7 +17,8 @@ public class FilmesView {
         System.out.println(" Preencha os dados do filme que deseja inserir: ");
         System.out.println("----------------------------------------------");
         System.out.print(" Nome do filme: ");
-            String nomeFilme = input.next();
+//            input.nextLine();
+            String nomeFilme = input.nextLine();
         System.out.println("----------------------------------------------");
         System.out.print(" Duração em minutos: ");
             int duracao = input.nextInt();
@@ -32,7 +33,8 @@ public class FilmesView {
             int idPais = input.nextInt();
         System.out.println("----------------------------------------------");
         System.out.print(" Sinopse: ");
-            String sinopse = input.next();
+            input.nextLine();
+            String sinopse = input.nextLine();
         System.out.println("----------------------------------------------");
 
         controller.cadastrarFilme(nomeFilme, duracao, ano, idDiretor, idPais, sinopse);
@@ -57,25 +59,27 @@ public class FilmesView {
 
         if(escolha == 1) {
             System.out.println(" Preencha somente os campos que deseja editar e ");
-            System.out.println(" deixe o restante em branco usando ENTER: ");
+            System.out.println(" marque o restante com [0]: ");
             System.out.println("----------------------------------------------");
             System.out.print(" Nome do filme: ");
-            String nomeFilme = input.next();
+                input.nextLine();
+                String nomeFilme = input.nextLine();
             System.out.println("----------------------------------------------");
             System.out.print(" Duração em minutos: ");
-            int duracao = input.nextInt();
+                int duracao = input.nextInt();
             System.out.println("----------------------------------------------");
             System.out.print(" Ano de lançamento: ");
-            int ano = input.nextInt();
+                int ano = input.nextInt();
             System.out.println("----------------------------------------------");
             System.out.print(" Id do diretor: ");
-            int idDiretor = input.nextInt();
+                int idDiretor = input.nextInt();
             System.out.println("----------------------------------------------");
             System.out.print(" ID do país de origem: ");
-            int idPais = input.nextInt();
+                int idPais = input.nextInt();
             System.out.println("----------------------------------------------");
             System.out.print(" Sinopse: ");
-            String sinopse = input.next();
+                input.nextLine();
+                String sinopse = input.nextLine();
             System.out.println("----------------------------------------------");
 
             controller.editarFilme(idFilme, nomeFilme, duracao, ano, idDiretor, idPais, sinopse);

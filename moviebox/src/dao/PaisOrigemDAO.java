@@ -17,7 +17,7 @@ public class PaisOrigemDAO {
         Set<PaisOrigem> paises = new HashSet<>();
         try {
             Connection conn = DataBaseConnection.getInstance().getConn();
-            String sql = "SELECT * FROM clients";
+            String sql = "SELECT * FROM paises_de_origem";
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
 
@@ -40,6 +40,7 @@ public class PaisOrigemDAO {
             Connection conn = DataBaseConnection.getInstance().getConn();
             String sql = "SELECT * FROM paises_de_origem WHERE id_pais = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setLong(1, idPais);
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {

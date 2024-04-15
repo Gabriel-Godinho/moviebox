@@ -20,7 +20,10 @@ public class PaisesController {
     }
 
     public void listarPaises() {
-        paisDAO.getAll();
+        for(PaisOrigem pais : paisDAO.getAll()) {
+            System.out.println( "Nome: " + pais.getNomePais());
+            System.out.println("------------------------------------------------");
+        }
     }
 
     public void editarPais(int idPais, String nomePais) {

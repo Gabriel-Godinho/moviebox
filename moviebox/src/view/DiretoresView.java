@@ -17,11 +17,14 @@ public class DiretoresView {
         System.out.println(" Preencha os dados do diretor: ");
         System.out.println("----------------------------------------------");
         System.out.print(" Nome do diretor: ");
-        String nomeDiretor = input.next();
+            String nomeDiretor = input.nextLine();
         System.out.println("----------------------------------------------");
         System.out.print(" Nacionalidade: ");
-            String nacionalidade = input.next();
+            input.nextLine();
+            String nacionalidade = input.nextLine();
         System.out.println("----------------------------------------------");
+
+        input.close();
 
         controller.cadastrarDiretor(nomeDiretor, nacionalidade);
     }
@@ -45,13 +48,15 @@ public class DiretoresView {
 
         if(escolha == 1) {
             System.out.println(" Preencha somente os campos que deseja editar e ");
-            System.out.println(" deixe o restante em branco usando ENTER: ");
+            System.out.println(" marque o restante com [0]: ");
             System.out.println("----------------------------------------------");
             System.out.print(" Nome do diretor: ");
-            String nomeDiretor = input.next();
+                input.nextLine();
+                String nomeDiretor = input.nextLine();
             System.out.println("----------------------------------------------");
             System.out.print(" Nacionalidade: ");
-            String nacionalidade = input.next();
+//                input.nextLine();
+                String nacionalidade = input.nextLine();
             System.out.println("----------------------------------------------");
 
             controller.editarDiretor(idDiretor, nomeDiretor, nacionalidade);
