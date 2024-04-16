@@ -13,23 +13,24 @@ import java.util.Set;
 
 public class FilmeDAO {
 
-    public Set<Filme> getAll() {
+    public final Set<Filme> getAll() {
         Set<Filme> filmes = new HashSet<>();
+
         try {
             Connection conn = DataBaseConnection.getInstance().getConn();
             String sql = "SELECT * FROM filmes";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
 
-            while (rs.next()) {
+            while (resultSet.next()) {
                 Filme filme = new Filme();
-                filme.setNomeFilme(rs.getString("nome_filme"));
-                filme.setIdFilme(rs.getLong("id_filme"));
-                filme.setDuracao(rs.getInt("duracao"));
-                filme.setAno(rs.getInt("ano"));
-                filme.setIdDiretor(rs.getLong("id_diretor"));
-                filme.setIdPais(rs.getLong("id_pais"));
-                filme.setSinopse(rs.getString("sinopse"));
+                filme.setNomeFilme(resultSet.getString("nome_filme"));
+                filme.setIdFilme(resultSet.getLong("id_filme"));
+                filme.setDuracao(resultSet.getInt("duracao"));
+                filme.setAno(resultSet.getInt("ano"));
+                filme.setIdDiretor(resultSet.getLong("id_diretor"));
+                filme.setIdPais(resultSet.getLong("id_pais"));
+                filme.setSinopse(resultSet.getString("sinopse"));
                 filmes.add(filme);
             }
         } catch (SQLException e) {
@@ -39,23 +40,24 @@ public class FilmeDAO {
         return filmes;
     }
 
-    public Filme getById(long idFilme) {
+    public final Filme getById(long idFilme) {
         Filme filme = new Filme();
+
         try {
             Connection conn = DataBaseConnection.getInstance().getConn();
             String sql = "SELECT * FROM filmes WHERE id_filme = ?";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setLong(1, idFilme);
-            ResultSet rs = ps.executeQuery();
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setLong(1, idFilme);
+            ResultSet resultSet = preparedStatement.executeQuery();
 
-            if (rs.next()) {
-                filme.setIdDiretor(rs.getLong("id_filme"));
-                filme.setNomeFilme(rs.getString("nome_filme"));
-                filme.setDuracao(rs.getInt("duracao"));
-                filme.setAno(rs.getInt("ano"));
-                filme.setIdDiretor(rs.getLong("id_diretor"));
-                filme.setIdPais(rs.getLong("id_pais"));
-                filme.setSinopse(rs.getString("sinopse"));
+            if (resultSet.next()) {
+                filme.setIdDiretor(resultSet.getLong("id_filme"));
+                filme.setNomeFilme(resultSet.getString("nome_filme"));
+                filme.setDuracao(resultSet.getInt("duracao"));
+                filme.setAno(resultSet.getInt("ano"));
+                filme.setIdDiretor(resultSet.getLong("id_diretor"));
+                filme.setIdPais(resultSet.getLong("id_pais"));
+                filme.setSinopse(resultSet.getString("sinopse"));
             }
         } catch (SQLException e) {
             System.out.println("Erro ao buscar os diretores cadastrados!");
@@ -76,6 +78,7 @@ public class FilmeDAO {
             preparedStatement.setLong(5, filme.getIdPais());
             preparedStatement.setString(6, filme.getSinopse());
             preparedStatement.executeUpdate();
+
             System.out.println("Filme adicionado com sucesso!");
         } catch (SQLException e) {
             System.out.println("Erro ao inserir o novo filme!");

@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class PaisesView {
 
-    private final PaisesController controller = new PaisesController();
+    private final PaisesController CONTROLLER = new PaisesController();
 
     public void cadastro() {
         Scanner input = new Scanner(System.in);
@@ -14,11 +14,14 @@ public class PaisesView {
         System.out.println("------------------------------------------------");
         System.out.println("                Países - Cadastro               ");
         System.out.println("------------------------------------------------");
-        System.out.print(" Nome do país: ");
-            String nomePais = input.nextLine();
+        System.out.print("Nome do país: ");
+        String nomePais = input.nextLine();
+
         System.out.println("----------------------------------------------");
 
-        controller.cadastrarPais(nomePais);
+        CONTROLLER.cadastrarPais(nomePais);
+
+        input.close();
     }
 
     public void edicao() {
@@ -29,24 +32,29 @@ public class PaisesView {
         System.out.println("------------------------------------------------");
         System.out.println("            Países - Edição/Exclusão            ");
         System.out.println("------------------------------------------------");
-        System.out.print(" ID do país que deseja editar/excluir: ");
-            int idPais = input.nextInt();
+        System.out.print("ID do país que deseja editar/excluir: ");
+        int idPais = input.nextInt();
+
         System.out.println("------------------------------------------------");
         System.out.println(" Para EDITAR digite [1] ");
         System.out.println(" Para EXCLUIR digite [2] ");
-        System.out.print(" Sua escolha: ");
-            escolha = input.nextInt();
+        System.out.print("Sua escolha: ");
+        escolha = input.nextInt();
+
         System.out.println("------------------------------------------------");
 
-        if(escolha == 1) {
-            System.out.print(" Nome do país: ");
-                input.nextLine();
-                String nomePais = input.nextLine();
+        if (escolha == 1) {
+            System.out.print("Nome do país: ");
+            String nomePais = input.nextLine();
+
             System.out.println("----------------------------------------------");
 
-            controller.editarPais(idPais, nomePais);
+            CONTROLLER.editarPais(idPais, nomePais);
         } else {
-            controller.excluirPais(idPais);
+            CONTROLLER.excluirPais(idPais);
         }
+
+        input.close();
     }
+
 }

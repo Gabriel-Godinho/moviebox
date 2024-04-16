@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class DiretoresView {
 
-    private final DiretoresController controller = new DiretoresController();
+    private final DiretoresController CONTROLLER = new DiretoresController();
 
     public void cadastro() {
         Scanner input = new Scanner(System.in);
@@ -16,23 +16,23 @@ public class DiretoresView {
         System.out.println("------------------------------------------------");
         System.out.println(" Preencha os dados do diretor: ");
         System.out.println("----------------------------------------------");
-        System.out.print(" Nome do diretor: ");
-            String nomeDiretor = input.nextLine();
+        System.out.print("Nome do diretor: ");
+        String nomeDiretor = input.nextLine();
+
         System.out.println("----------------------------------------------");
-        System.out.print(" Nacionalidade: ");
-            input.nextLine();
-            String nacionalidade = input.nextLine();
+        System.out.print("Nacionalidade: ");
+
+        String nacionalidade = input.nextLine();
         System.out.println("----------------------------------------------");
+
+        CONTROLLER.cadastrarDiretor(nomeDiretor, nacionalidade);
 
         input.close();
-
-        controller.cadastrarDiretor(nomeDiretor, nacionalidade);
     }
 
     public void edicao() {
-        Scanner input = new Scanner(System.in);
-
         int escolha;
+        Scanner input = new Scanner(System.in);
 
         System.out.println("------------------------------------------------");
         System.out.println("          Diretores - Edição/Exclusão           ");
@@ -50,18 +50,19 @@ public class DiretoresView {
             System.out.println(" Preencha somente os campos que deseja editar e ");
             System.out.println(" marque o restante com [0]: ");
             System.out.println("----------------------------------------------");
-            System.out.print(" Nome do diretor: ");
-                input.nextLine();
+            System.out.print("Nome do diretor: ");
                 String nomeDiretor = input.nextLine();
             System.out.println("----------------------------------------------");
-            System.out.print(" Nacionalidade: ");
-                input.nextLine();
+            System.out.print("Nacionalidade: ");
                 String nacionalidade = input.nextLine();
             System.out.println("----------------------------------------------");
 
-            controller.editarDiretor(idDiretor, nomeDiretor, nacionalidade);
+            CONTROLLER.editarDiretor(idDiretor, nomeDiretor, nacionalidade);
         } else {
-            controller.excluirDiretor(idDiretor);
+            CONTROLLER.excluirDiretor(idDiretor);
         }
+
+        input.close();
     }
+
 }

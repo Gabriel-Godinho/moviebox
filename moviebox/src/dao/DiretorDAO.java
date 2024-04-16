@@ -13,19 +13,20 @@ import java.util.Set;
 
 public class DiretorDAO {
 
-    public Set<Diretor> getAll() {
+    public final Set<Diretor> getAll() {
         Set<Diretor> diretores = new HashSet<>();
+
         try {
             Connection conn = DataBaseConnection.getInstance().getConn();
             String sql = "SELECT * FROM diretores";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
 
-            while (rs.next()) {
+            while (resultSet.next()) {
                 Diretor diretor = new Diretor();
-                diretor.setIdDiretor(rs.getLong("id_diretor"));
-                diretor.setNomeDiretor(rs.getString("nome_diretor"));
-                diretor.setNacionalidade(rs.getString("nacionalidade"));
+                diretor.setIdDiretor(resultSet.getLong("id_diretor"));
+                diretor.setNomeDiretor(resultSet.getString("nome_diretor"));
+                diretor.setNacionalidade(resultSet.getString("nacionalidade"));
                 diretores.add(diretor);
             }
         } catch (SQLException e) {
@@ -35,14 +36,15 @@ public class DiretorDAO {
         return diretores;
     }
 
-    public Diretor getById(long idDiretor) {
+    public final Diretor getById(long idDiretor) {
         Diretor diretor = new Diretor();
+
         try {
             Connection conn = DataBaseConnection.getInstance().getConn();
             String sql = "SELECT * FROM diretores WHERE id_diretor = ?";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setLong(1, idDiretor);
-            ResultSet rs = ps.executeQuery();
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setLong(1, idDiretor);
+            ResultSet rs = preparedStatement.executeQuery();
 
             if (rs.next()) {
                 diretor.setIdDiretor(rs.getLong("id_diretor"));
@@ -56,11 +58,10 @@ public class DiretorDAO {
         return diretor;
     }
 
-    public void save(Diretor diretor) {
+    public final void save(Diretor diretor) {
         try {
             Connection conn = DataBaseConnection.getInstance().getConn();
             String sql = "INSERT INTO diretores(nome_diretor, nacionalidade) VALUES(?, ?)";
-
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, diretor.getNomeDiretor());
             preparedStatement.setString(2, diretor.getNacionalidade());
