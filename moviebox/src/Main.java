@@ -12,80 +12,82 @@ public class Main {
         Scanner input = new Scanner(System.in);
 
         do {
-            escolha = menu();
+            escolha = menu(input);
 
             switch (escolha) {
                 case 1:
                     new FilmesView().cadastro();
-                    System.out.println("Para voltar ao menu tecle [0]");
-                    input.next();
+                    System.out.print("Para voltar ao menu tecle [0]");
+                    escolha = input.nextInt();
                     break;
                 case 2:
                     new FilmesView().edicao();
-                    System.out.println("Para voltar ao menu tecle [0]");
-                    input.next();
+                    System.out.print("Para voltar ao menu tecle [0]");
+                    escolha = input.nextInt();
                     break;
                 case 3:
                     new FilmesController().listarFilmes();
-                    System.out.println("Para voltar ao menu tecle [0]");
-                    input.next();
+                    System.out.print("Para voltar ao menu tecle [0]");
+                    escolha = input.nextInt();
                     break;
                 case 4:
                     new DiretoresView().cadastro();
-                    System.out.println("Para voltar ao menu tecle [0]");
-                    input.next();
+                    System.out.print("Para voltar ao menu tecle [0]");
+                    escolha = input.nextInt();
                     break;
                 case 5:
                     new DiretoresView().edicao();
-                    System.out.println("Para voltar ao menu tecle [0]");
-                    input.next();
+                    System.out.print("Para voltar ao menu tecle [0]");
+                    escolha = input.nextInt();
                     break;
                 case 6:
                     new DiretoresController().listarDiretores();
-                    System.out.println("Para voltar ao menu tecle [0]");
-                    input.next();
+                    System.out.print("Para voltar ao menu tecle [0]");
+                    escolha = input.nextInt();
                     break;
                 case 7:
                     new PaisesView().cadastro();
-                    System.out.println("Para voltar ao menu tecle [0]");
-                    input.next();
+                    System.out.print("Para voltar ao menu tecle [0]");
+                    escolha = input.nextInt();
                     break;
                 case 8:
                     new PaisesView().edicao();
-                    System.out.println("Para voltar ao menu tecle [0]");
-                    input.next();
+                    System.out.print("Para voltar ao menu tecle [0]");
+                    escolha = input.nextInt();
                     break;
                 case 9:
                     new PaisesController().listarPaises();
-                    System.out.println("Para voltar ao menu tecle [0]");
-                    input.next();
+                    System.out.print("Para voltar ao menu tecle [0]");
+                    escolha = input.nextInt();
                     break;
                 case 10:
                     new WatchlistView().inserir();
-                    System.out.println("Para voltar ao menu tecle [0]");
-                    input.next();
+                    System.out.print("Para voltar ao menu tecle [0]");
+                    escolha = input.nextInt();
                     break;
                 case 11:
                     new WatchlistView().remover();
-                    System.out.println("Para voltar ao menu tecle [0]");
-                    input.next();
+                    System.out.print("Para voltar ao menu tecle [0]");
+                    escolha = input.nextInt();
                     break;
                 case 12:
                     new WatchlistsController().mostrar();
-                    System.out.println("Para voltar ao menu tecle [0]");
-                    input.next();
+                    System.out.print("Para voltar ao menu tecle [0]");
+                    escolha = input.nextInt();
                     break;
                 case 13:
                     System.exit(0);
+                    break;
+                default:
+                    System.out.print("Opção inválida. Escolha outra: ");
+                    escolha = input.nextInt();
             }
-        } while (escolha > 0 && escolha < 14);
+        } while (escolha >= 0);
 
         input.close();
     }
 
-    private static int menu() {
-        Scanner input = new Scanner(System.in);
-
+    private static int menu(Scanner input) {
         System.out.println("-----------------------------------");
         System.out.println("              Filmoteca            ");
         System.out.println("-----------------------------------");
@@ -104,11 +106,8 @@ public class Main {
         System.out.println(" 13. Sair");
         System.out.println("-----------------------------------");
         System.out.print(" Escolha uma opção: ");
-        int opcaoEscolhida = input.nextInt();
 
-        input.close();
-
-        return opcaoEscolhida;
+        return input.nextInt();
     }
     
 }
