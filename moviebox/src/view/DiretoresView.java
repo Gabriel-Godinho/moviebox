@@ -37,24 +37,28 @@ public class DiretoresView {
         System.out.println("------------------------------------------------");
         System.out.println("          Diretores - Edição/Exclusão           ");
         System.out.println("------------------------------------------------");
-        System.out.print(" ID do diretor que deseja editar/excluir: ");
-            int idDiretor = input.nextInt();
+        System.out.print("ID do diretor que deseja editar/excluir: ");
+        int idDiretor = input.nextInt();
+
         System.out.println("------------------------------------------------");
         System.out.println(" Para EDITAR digite [1] ");
         System.out.println(" Para EXCLUIR digite [2] ");
-        System.out.print(" Sua escolha: ");
-            escolha = input.nextInt();
+        System.out.print("Sua escolha: ");
+        escolha = input.nextInt();
+
         System.out.println("------------------------------------------------");
 
-        if(escolha == 1) {
+        if (escolha == 1) {
             System.out.println(" Preencha somente os campos que deseja editar e ");
             System.out.println(" marque o restante com [0]: ");
             System.out.println("----------------------------------------------");
             System.out.print("Nome do diretor: ");
-                String nomeDiretor = input.nextLine();
+            String nomeDiretor = input.nextLine();
+
             System.out.println("----------------------------------------------");
             System.out.print("Nacionalidade: ");
-                String nacionalidade = input.nextLine();
+            String nacionalidade = input.nextLine();
+            
             System.out.println("----------------------------------------------");
 
             CONTROLLER.editarDiretor(idDiretor, nomeDiretor, nacionalidade);

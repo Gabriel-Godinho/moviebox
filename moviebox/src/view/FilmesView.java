@@ -64,7 +64,7 @@ public class FilmesView {
 
         System.out.println("------------------------------------------------");
 
-        if(escolha == 1) {
+        if (escolha == 1) {
             System.out.println(" Preencha somente os campos que deseja editar e ");
             System.out.println(" marque o restante com [0]: ");
             System.out.println("----------------------------------------------");
