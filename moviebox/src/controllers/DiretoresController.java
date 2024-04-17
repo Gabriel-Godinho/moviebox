@@ -7,11 +7,11 @@ public class DiretoresController {
 
     private final DiretorDAO diretorDAO = new DiretorDAO();
 
-    public void cadastrarDiretor(String nomeDiretor, String nacionalidade) {
-        Diretor diretor = new Diretor(nomeDiretor, nacionalidade);
+    public void cadastrarDiretor(String nomeDiretor, long idNacionalidade) {
+        Diretor diretor = new Diretor(nomeDiretor, idNacionalidade);
 
         diretor.setNomeDiretor(nomeDiretor);
-        diretor.setNacionalidade(nacionalidade);
+        diretor.setIdNacionalidade(idNacionalidade);
 
         diretorDAO.save(diretor);
     }
@@ -26,13 +26,13 @@ public class DiretoresController {
         System.out.println("------------------------------------------------");
         for(Diretor diretor : diretorDAO.getAll()) {
             System.out.println( "Nome: " + diretor.getNomeDiretor());
-            System.out.println( "Nacionalidade: " + diretor.getNacionalidade());
+            System.out.println( "Nacionalidade: " + diretor.getIdNacionalidade());
             System.out.println("------------------------------------------------");
         }
     }
 
-    public void editarDiretor(int idDiretor, String nomeDiretor, String nacionalidade) {
-        Diretor diretor = new Diretor(idDiretor, nomeDiretor, nacionalidade);
+    public void editarDiretor(int idDiretor, String nomeDiretor, long idNacionalidade) {
+        Diretor diretor = new Diretor(idDiretor, nomeDiretor, idNacionalidade);
         diretorDAO.update(diretor);
     }
 }

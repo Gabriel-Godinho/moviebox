@@ -38,7 +38,7 @@ public class RelatoriosView {
         CONTROLLER.listarFilmesNaWatchlistPorData(dataInsercao);
     }
 
-    public void mostrarLista() {
+    public void mostrarLista(Scanner input) {
 
     }
 
