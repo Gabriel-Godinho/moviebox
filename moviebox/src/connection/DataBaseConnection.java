@@ -6,11 +6,6 @@ import java.sql.SQLException;
 
 public class DataBaseConnection {
 
-    private final String DB_NAME = "colecao_filmes";
-    private final String HOSTNAME = "bancodados2.cf6gg8ueyt35.sa-east-1.rds.amazonaws.com";
-    private final String PORT = "5432";
-    private final String USER_NAME = "postgres";
-    private final String PASSWORD = "moviebox235689";
     private final Connection CONN;
     private static DataBaseConnection instance;
 
@@ -22,7 +17,12 @@ public class DataBaseConnection {
             System.exit(1);
         }
 
+        final String DB_NAME = "colecao_filmes";
+        final String HOSTNAME = "bancodados2.cf6gg8ueyt35.sa-east-1.rds.amazonaws.com";
+        final String PORT = "5432";
         final String CONNECTION_URL = String.format("jdbc:postgresql://%s:%s/%s", HOSTNAME, PORT, DB_NAME);
+        final String USER_NAME = "postgres";
+        final String PASSWORD = "moviebox235689";
         this.CONN = DriverManager.getConnection(CONNECTION_URL, USER_NAME, PASSWORD);
     }
 
