@@ -2,6 +2,8 @@ package dao;
 
 import connection.DataBaseConnection;
 import model.Diretor;
+import view.MensagensView;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,6 +14,8 @@ import java.util.List;
 import java.util.Set;
 
 public class DiretorDAO {
+
+    private final MensagensView mensagem = new MensagensView();
 
     public final Set<Diretor> getAll() {
         Set<Diretor> diretores = new HashSet<>();
@@ -26,7 +30,7 @@ public class DiretorDAO {
                 Diretor diretor = new Diretor();
                 diretor.setIdDiretor(resultSet.getLong("id_diretor"));
                 diretor.setNomeDiretor(resultSet.getString("nome_diretor"));
-                diretor.setNacionalidade(resultSet.getString("nacionalidade"));
+                diretor.setIdNacionalidade(resultSet.getLong("id_nacionalidade"));
                 diretores.add(diretor);
             }
         } catch (SQLException e) {
@@ -49,10 +53,10 @@ public class DiretorDAO {
             if (rs.next()) {
                 diretor.setIdDiretor(rs.getLong("id_diretor"));
                 diretor.setNomeDiretor(rs.getString("nome_diretor"));
-                diretor.setNacionalidade(rs.getString("nacionalidade"));
+                diretor.setIdNacionalidade(rs.getLong("id_nacionalidade"));
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao buscar os diretores cadastrados!");
+            mensagem.layoutMensagem("Erro ao buscar os diretores cadastrados!");
         }
 
         return diretor;
@@ -61,13 +65,13 @@ public class DiretorDAO {
     public final void save(Diretor diretor) {
         try {
             Connection conn = DataBaseConnection.getInstance().getConn();
-            String sql = "INSERT INTO diretores(nome_diretor, nacionalidade) VALUES(?, ?)";
+            String sql = "INSERT INTO diretores(nome_diretor, id_nacionalidade) VALUES(?, ?)";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, diretor.getNomeDiretor());
-            preparedStatement.setString(2, diretor.getNacionalidade());
+            preparedStatement.setLong(2, diretor.getIdNacionalidade());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("Erro ao inserir o novo diretor!");
+            mensagem.layoutMensagem("Erro ao inserir o novo diretor!");
         }
     }
 
@@ -83,9 +87,9 @@ public class DiretorDAO {
                 params.add(diretor.getNomeDiretor());
             }
 
-            if (diretor.getNacionalidade().isEmpty()) {
-                sb.append(" nacionalidade = ?,");
-                params.add(diretor.getNacionalidade());
+            if (diretor.getIdNacionalidade() == 0) {
+                sb.append(" id_nacionalidade = ?,");
+                params.add(diretor.getIdNacionalidade());
             }
 
             if (sb.toString().endsWith(",")) {
@@ -110,24 +114,9 @@ public class DiretorDAO {
 
             preparedStatement.executeUpdate();
 
-            System.out.println("Diretor atualizado com sucesso!");
+            mensagem.layoutMensagem("Diretor atualizado com sucesso!");
         } catch (SQLException e) {
-            System.out.println("Erro ao atualizar o diretor!");
+            mensagem.layoutMensagem("Erro ao atualizar o diretor!");
         }
     }
-
-    public final void delete(long idDiretor) {
-        try {
-            Connection conn = DataBaseConnection.getInstance().getConn();
-            String sql = "DELETE FROM diretores WHERE id_diretor = ?";
-            PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setLong(1, idDiretor);
-            preparedStatement.executeUpdate();
-
-            System.out.println("Diretor excluído com sucesso!");
-        } catch (SQLException e) {
-            System.out.println("Erro ao excluir o diretor!");
-        }
-    }
-
 }

@@ -35,13 +35,13 @@ public class Main {
                     break;
                 case 4:
                     mensagem.limparTela(6);
-                    new DiretoresView().cadastro();
+                    new DiretoresView().escolherAcao(input);
                     mensagem.retornarMenu();
                     escolha = input.nextInt();
                     break;
                 case 5:
                     mensagem.limparTela(6);
-                    new DiretoresView().edicao();
+                    new DiretoresController().listarDiretores();
                     mensagem.retornarMenu();
                     escolha = input.nextInt();
                     break;
