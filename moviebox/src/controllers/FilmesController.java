@@ -5,9 +5,11 @@ import dao.FilmeDAO;
 import dao.PaisOrigemDAO;
 import dao.WatchListDAO;
 import model.Filme;
+import view.MensagensView;
 
 public class FilmesController {
 
+    private final MensagensView mensagem = new MensagensView();
     private final FilmeDAO filmeDAO = new FilmeDAO();
     private final WatchListDAO watchlistDAO = new WatchListDAO();
     private final PaisOrigemDAO paisDAO = new PaisOrigemDAO();
@@ -32,16 +34,15 @@ public class FilmesController {
     }
 
     public void listarFilmes() {
-        System.out.println("------------------------------------------------");
-        System.out.println("                     FILMES                     ");
-        System.out.println("------------------------------------------------");
+        mensagem.layoutMensagem("                    FILMES                     ");
         for(Filme filme : filmeDAO.getAll()) {
-            System.out.println( "Nome: " + filme.getNomeFilme());
-            System.out.println( "Diretor: " + diretorDAO.getById(filme.getIdDiretor()).getNomeDiretor());
-            System.out.println( "Duração: " + filme.getDuracao() + " minutos");
-            System.out.println( "Ano de lançamento: " + filme.getAno());
-            System.out.println( "País de origem: " + paisDAO.getById(filme.getIdPais()).getNomePais());
-            System.out.println( "Sinopse: " + filme.getSinopse());
+            System.out.println(" ID: " + filme.getIdFilme());
+            System.out.println(" Nome: " + filme.getNomeFilme());
+            System.out.println(" Diretor: " + diretorDAO.getById(filme.getIdDiretor()).getNomeDiretor());
+            System.out.println(" Duração: " + filme.getDuracao() + " minutos");
+            System.out.println(" Ano de lançamento: " + filme.getAno());
+            System.out.println(" País de origem: " + paisDAO.getById(filme.getIdPais()).getNomePais());
+            System.out.println(" Sinopse: " + filme.getSinopse());
             System.out.println("------------------------------------------------");
         }
     }

@@ -7,13 +7,25 @@ import java.util.Scanner;
 public class FilmesView {
 
     private final FilmesController CONTROLLER = new FilmesController();
+    private final MensagensView mensagem = new MensagensView();
 
-    public void cadastro() {
-        Scanner input = new Scanner(System.in);
+    public void escolherAcao(Scanner input) {
+        int escolha;
 
+        mensagem.layoutMensagem("           Filmes - Cadastro/Edição            ");
+        System.out.println(" Para CADASTRAR digite [1] ");
+        System.out.println(" Para EDITAR digite [2] ");
         System.out.println("------------------------------------------------");
-        System.out.println("                Filmes - Cadastro               ");
-        System.out.println("------------------------------------------------");
+        System.out.print("Sua escolha: ");
+        escolha = input.nextInt();
+
+        if(escolha == 1) cadastro(input);
+        else edicao(input);
+    }
+
+    private void cadastro(Scanner input) {
+
+        mensagem.layoutMensagem("               Filmes - Cadastro               ");
         System.out.println(" Preencha os dados do filme que deseja inserir: ");
         System.out.println("----------------------------------------------");
         System.out.print("Nome do filme: ");
@@ -42,63 +54,54 @@ public class FilmesView {
         System.out.println("----------------------------------------------");
 
         CONTROLLER.cadastrarFilme(nomeFilme, duracao, ano, idDiretor, idPais, sinopse);
-
-        input.close();
     }
 
-    public void edicao() {
-        int escolha = 0;
-        Scanner input = new Scanner(System.in);
+    public void edicao(Scanner input) {
 
-        System.out.println("------------------------------------------------");
-        System.out.println("            Filmes - Edição/Exclusão            ");
-        System.out.println("------------------------------------------------");
-        System.out.print(" ID do filme que deseja editar/excluir: ");
+        mensagem.limparTela(10);
+        mensagem.layoutMensagem("               Filmes - Edição                ");
+        System.out.print(" ID do filme que deseja editar: ");
         int idFilme = input.nextInt();
 
+        mensagem.limparTela(10);
         System.out.println("------------------------------------------------");
-        System.out.println(" Para EDITAR digite [1] ");
-        System.out.println(" Para EXCLUIR digite [2] ");
-        System.out.print("Sua escolha: ");
-        escolha = input.nextInt();
+        System.out.println(" Preencha somente os campos que deseja editar e ");
+        System.out.println(" marque o restante com [0]: ");
+        System.out.println("----------------------------------------------");
+        System.out.print(" Nome do filme: ");
+        input.next();
+        String nomeFilme = input.nextLine();
 
-        System.out.println("------------------------------------------------");
+        System.out.println("----------------------------------------------");
+        System.out.print(" Duração em minutos: ");
+        int duracao = input.nextInt();
 
-        if(escolha == 1) {
-            System.out.println(" Preencha somente os campos que deseja editar e ");
-            System.out.println(" marque o restante com [0]: ");
-            System.out.println("----------------------------------------------");
-            System.out.print("Nome do filme: ");
-            String nomeFilme = input.nextLine();
+        System.out.println("----------------------------------------------");
+        System.out.print(" Ano de lançamento: ");
+        int ano = input.nextInt();
 
-            System.out.println("----------------------------------------------");
-            System.out.print("Duração em minutos: ");
-            int duracao = input.nextInt();
+        System.out.println("----------------------------------------------");
+        System.out.print(" ID do diretor: ");
+        int idDiretor = input.nextInt();
 
-            System.out.println("----------------------------------------------");
-            System.out.print("Ano de lançamento: ");
-            int ano = input.nextInt();
+        System.out.println("----------------------------------------------");
+        System.out.print(" ID do país de origem: ");
+        int idPais = input.nextInt();
 
-            System.out.println("----------------------------------------------");
-            System.out.print("Id do diretor: ");
-            int idDiretor = input.nextInt();
+        System.out.println("----------------------------------------------");
+        System.out.print(" Sinopse: ");
+        input.next();
+        String sinopse = input.nextLine();
 
-            System.out.println("----------------------------------------------");
-            System.out.print("ID do país de origem: ");
-            int idPais = input.nextInt();
+        CONTROLLER.editarFilme(idFilme, nomeFilme, duracao, ano, idDiretor, idPais, sinopse);
+    }
 
-            System.out.println("----------------------------------------------");
-            System.out.print("Sinopse: ");
-            String sinopse = input.nextLine();
+    public void excluir(Scanner input) {
+        mensagem.layoutMensagem("               Filmes - Exclusão               ");
+        System.out.print(" ID do filme que deseja excluir: ");
+        int idFilme = input.nextInt();
 
-            System.out.println("----------------------------------------------");
-
-            CONTROLLER.editarFilme(idFilme, nomeFilme, duracao, ano, idDiretor, idPais, sinopse);
-        } else {
-            CONTROLLER.excluirFilme(idFilme);
-        }
-
-        input.close();
+        CONTROLLER.excluirFilme(idFilme);
     }
 
 }

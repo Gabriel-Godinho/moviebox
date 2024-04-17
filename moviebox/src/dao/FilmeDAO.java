@@ -2,6 +2,7 @@ package dao;
 
 import connection.DataBaseConnection;
 import model.Filme;
+import view.MensagensView;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,6 +13,8 @@ import java.util.List;
 import java.util.Set;
 
 public class FilmeDAO {
+
+    private final MensagensView mensagem = new MensagensView();
 
     public final Set<Filme> getAll() {
         Set<Filme> filmes = new HashSet<>();
@@ -34,7 +37,7 @@ public class FilmeDAO {
                 filmes.add(filme);
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao buscar os países cadastrados!");
+            mensagem.layoutMensagem("Erro ao buscar os países cadastrados!");
         }
 
         return filmes;
@@ -60,7 +63,7 @@ public class FilmeDAO {
                 filme.setSinopse(resultSet.getString("sinopse"));
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao buscar os diretores cadastrados!");
+            mensagem.layoutMensagem("Erro ao buscar os diretores cadastrados!");
         }
 
         return filme;
@@ -79,9 +82,9 @@ public class FilmeDAO {
             preparedStatement.setString(6, filme.getSinopse());
             preparedStatement.executeUpdate();
 
-            System.out.println("Filme adicionado com sucesso!");
+            mensagem.layoutMensagem("Filme adicionado com sucesso!");
         } catch (SQLException e) {
-            System.out.println("Erro ao inserir o novo filme!");
+            mensagem.layoutMensagem("Erro ao inserir o novo filme!");
         }
     }
 
@@ -144,9 +147,9 @@ public class FilmeDAO {
 
             preparedStatement.executeUpdate();
 
-            System.out.println("Filme alterado com sucesso!");
+            mensagem.layoutMensagem("Filme alterado com sucesso!");
         } catch (SQLException e) {
-            System.out.println("Erro ao alterar filme!");
+            mensagem.layoutMensagem("Erro ao alterar filme!");
         }
     }
 
@@ -158,9 +161,9 @@ public class FilmeDAO {
             preparedStatement.setLong(1, idFilme);
             preparedStatement.executeUpdate();
 
-            System.out.println("Filme excluído com sucesso!");
+            mensagem.layoutMensagem("Filme excluído com sucesso!");
         } catch (SQLException e) {
-            System.out.println("Erro ao deletar filme!");
+            mensagem.layoutMensagem("Erro ao deletar filme!");
         }
     }
 

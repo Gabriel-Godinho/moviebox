@@ -1,7 +1,6 @@
 package view;
 
 import controllers.PaisesController;
-
 import java.util.Scanner;
 
 public class PaisesView {

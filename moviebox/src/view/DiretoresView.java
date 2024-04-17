@@ -7,22 +7,30 @@ import java.util.Scanner;
 public class DiretoresView {
 
     private final DiretoresController CONTROLLER = new DiretoresController();
+    private final MensagensView mensagem = new MensagensView();
 
-    public void cadastro() {
-        Scanner input = new Scanner(System.in);
+    public void escolherAcao(Scanner input) {
+        int escolha;
 
+        mensagem.layoutMensagem("          Diretores - Cadastro/Edição          ");
+        System.out.println(" Para CADASTRAR digite [1] ");
+        System.out.println(" Para EDITAR digite [2] ");
         System.out.println("------------------------------------------------");
-        System.out.println("              Diretores - Cadastro              ");
-        System.out.println("------------------------------------------------");
+        System.out.print("Sua escolha: ");
+        escolha = input.nextInt();
+
+        if(escolha == 1) cadastro(input);
+        else edicao(input);
+    }
+
+    public void cadastro(Scanner input) {
+
+        mensagem.layoutMensagem("             Diretores - Cadastro              ");
         System.out.println(" Preencha os dados do diretor: ");
         System.out.println("----------------------------------------------");
-        System.out.print("Nome do diretor: ");
+        System.out.print(" Nome do diretor: ");
         String nomeDiretor = input.nextLine();
-
-        System.out.println("----------------------------------------------");
-        System.out.print("Nacionalidade: ");
-
-        String nacionalidade = input.nextLine();
+        
         System.out.println("----------------------------------------------");
 
         CONTROLLER.cadastrarDiretor(nomeDiretor, nacionalidade);
@@ -30,7 +38,7 @@ public class DiretoresView {
         input.close();
     }
 
-    public void edicao() {
+    public void edicao(Scanner input) {
         int escolha;
         Scanner input = new Scanner(System.in);
 

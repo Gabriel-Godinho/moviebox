@@ -16,7 +16,7 @@ public class PaisOrigemDAO {
 
         try {
             Connection conn = DataBaseConnection.getInstance().getConn();
-            String sql = "SELECT * FROM paises_de_origem";
+            String sql = "SELECT * FROM paises";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -38,7 +38,7 @@ public class PaisOrigemDAO {
 
         try {
             Connection conn = DataBaseConnection.getInstance().getConn();
-            String sql = "SELECT * FROM paises_de_origem WHERE id_pais = ?";
+            String sql = "SELECT * FROM paises WHERE id_pais = ?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setLong(1, idPais);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -57,7 +57,7 @@ public class PaisOrigemDAO {
     public final void save(PaisOrigem paisOrigem) {
         try {
             Connection conn = DataBaseConnection.getInstance().getConn();
-            String sql = "INSERT INTO paises_de_origem(nome_pais) VALUES(?)";
+            String sql = "INSERT INTO paises(nome_pais) VALUES(?)";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, paisOrigem.getNomePais());
             preparedStatement.executeUpdate();
@@ -73,7 +73,7 @@ public class PaisOrigemDAO {
             Connection conn = DataBaseConnection.getInstance().getConn();
 
             if (!paisOrigem.getNomePais().isBlank()) {
-                String sql = "UPDATE paises_de_origem SET nome_pais = ? WHERE id_pais = ?";
+                String sql = "UPDATE paises SET nome_pais = ? WHERE id_pais = ?";
                 PreparedStatement preparedStatement = conn.prepareStatement(sql);
                 preparedStatement.setString(1, paisOrigem.getNomePais());
                 preparedStatement.setLong(2, paisOrigem.getIdPais());
@@ -89,7 +89,7 @@ public class PaisOrigemDAO {
     public final void delete(long idPais) {
         try {
             Connection conn = DataBaseConnection.getInstance().getConn();
-            String sql = "DELETE FROM paises_de_origem WHERE id_pais = ?";
+            String sql = "DELETE FROM paises WHERE id_pais = ?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setLong(1, idPais);
             preparedStatement.executeUpdate();

@@ -58,7 +58,7 @@ public class WatchListDAO {
             preparedStatement.setLong(1, idFilme);
             preparedStatement.executeUpdate();
 
-            System.out.println("Filme removido da watchlist com sucesso!");
+//            System.out.println("Filme removido da watchlist com sucesso!");
         } catch (SQLException e) {
             System.out.println("Erro ao remover o filme da watchlist!");
         }
