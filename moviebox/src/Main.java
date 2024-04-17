@@ -71,7 +71,7 @@ public class Main {
                     break;
                 case 10:
                     mensagem.limparTela(6);
-                    new RelatoriosView().mostrarLista(input);
+                    new RelatoriosView().mostrarOpcoes(input);
                     mensagem.retornarMenu();
                     escolha = input.nextInt();
                     break;

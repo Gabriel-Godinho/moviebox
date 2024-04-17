@@ -1,7 +1,6 @@
 package view;
 
 import controllers.DiretoresController;
-
 import java.util.Scanner;
 
 public class DiretoresView {

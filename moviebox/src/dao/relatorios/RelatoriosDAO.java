@@ -2,7 +2,7 @@ package dao.relatorios;
 
 import connection.DataBaseConnection;
 import model.Filme;
-
+import view.MensagensView;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,6 +11,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class RelatoriosDAO {
+
+    private final MensagensView mensagem = new MensagensView();
 
     /**
      * Busca todos os filmes dirigidos por um determinado diretor
@@ -44,7 +46,7 @@ public class RelatoriosDAO {
                 filmes.add(filme);
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao buscar os diretores cadastrados!");
+            mensagem.layoutMensagem("Erro ao buscar pelo diretor na watchlist!");
         }
 
         return filmes;
@@ -82,23 +84,23 @@ public class RelatoriosDAO {
                 filmes.add(filme);
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao buscar os diretores cadastrados!");
+            mensagem.layoutMensagem("Erro ao buscar pelo país na watchlist!");
         }
 
         return filmes;
     }
 
-    public final Set<Filme> buscarFilmesNaWatchlistPorData(String dataInsercao) {
+    public final Set<Filme> buscarFilmesNaWatchlistPorAnoInserido(int anoInsercao) {
         Set<Filme> filmes = new HashSet<>();
         try {
             Connection conn = DataBaseConnection.getInstance().getConn();
             String sql = """
                     SELECT * FROM filmes AS f INNER JOIN watchlist AS w
                     ON f.id_filme = w.id_filme
-                    WHERE w.data_insercao_filme = ?
+                    WHERE YEAR(w.data_insercao_filme) = ?
                     """;
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setString(1, dataInsercao);
+            preparedStatement.setLong(1, anoInsercao);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
@@ -113,7 +115,7 @@ public class RelatoriosDAO {
                 filmes.add(filme);
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao buscar os diretores cadastrados!");
+            mensagem.layoutMensagem("Erro ao buscar os filmes pelo ano inserido!");
         }
 
         return filmes;

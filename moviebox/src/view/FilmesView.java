@@ -1,7 +1,6 @@
 package view;
 
 import controllers.FilmesController;
-
 import java.util.Scanner;
 
 public class FilmesView {
