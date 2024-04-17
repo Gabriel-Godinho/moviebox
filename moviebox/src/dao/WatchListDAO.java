@@ -3,7 +3,7 @@ package dao;
 import connection.DataBaseConnection;
 import model.WatchList;
 import model.WatchListItem;
-
+import view.MensagensView;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class WatchListDAO {
+
+    private final MensagensView mensagem = new MensagensView();
 
     public final WatchList getWatchList() {
         WatchList watchList = new WatchList(new ArrayList<>());
@@ -29,7 +31,7 @@ public class WatchListDAO {
             }
 
         } catch (SQLException e) {
-            System.out.println("Erro ao mostrar a watchlist!");
+            mensagem.layoutMensagem("Erro ao mostrar a watchlist!");
         }
 
         return watchList;
@@ -44,9 +46,9 @@ public class WatchListDAO {
             preparedStatement.setString(2, watchListItem.getDataInsercaoFilme());
             preparedStatement.executeUpdate();
 
-            System.out.println("Filme adicionado com sucesso!");
+            mensagem.layoutMensagem("Filme adicionado na watchlist com sucesso!");
         } catch (SQLException e) {
-            System.out.println("Erro ao salvar o filme na watchlist!");
+            mensagem.layoutMensagem("Erro ao adicionar filme na watchlist!");
         }
     }
 
@@ -58,10 +60,9 @@ public class WatchListDAO {
             preparedStatement.setLong(1, idFilme);
             preparedStatement.executeUpdate();
 
-//            System.out.println("Filme removido da watchlist com sucesso!");
+            mensagem.layoutMensagem("Filme removido da watchlist com sucesso!");
         } catch (SQLException e) {
-            System.out.println("Erro ao remover o filme da watchlist!");
+            mensagem.layoutMensagem("Erro ao remover o filme da watchlist!");
         }
     }
-    
 }

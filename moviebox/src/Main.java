@@ -47,25 +47,25 @@ public class Main {
                     break;
                 case 6:
                     mensagem.limparTela(6);
-                    new DiretoresController().listarDiretores();
+                    new PaisesView().escolherAcao(input);
                     mensagem.retornarMenu();
                     escolha = input.nextInt();
                     break;
                 case 7:
                     mensagem.limparTela(6);
-                    new PaisesView().cadastro();
+                    new PaisesController().listarPaises();
                     mensagem.retornarMenu();
                     escolha = input.nextInt();
                     break;
                 case 8:
                     mensagem.limparTela(6);
-                    new PaisesView().edicao();
+                    new WatchlistView().escolherAcao(input);
                     mensagem.retornarMenu();
                     escolha = input.nextInt();
                     break;
                 case 9:
                     mensagem.limparTela(6);
-                    new PaisesController().listarPaises();
+                    new WatchlistsController().mostrar();
                     mensagem.retornarMenu();
                     escolha = input.nextInt();
                     break;

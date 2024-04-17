@@ -3,6 +3,7 @@ package controllers;
 import dao.FilmeDAO;
 import dao.WatchListDAO;
 import model.WatchListItem;
+import view.MensagensView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -13,6 +14,7 @@ import java.util.Date;
 public class WatchlistsController {
     private final WatchListDAO watchlistDAO = new WatchListDAO();
     private final FilmeDAO filmeDAO = new FilmeDAO();
+    private final MensagensView mensagem = new MensagensView();
 
     public void inserirFilme(int idFilme) {
         LocalDate localDate = LocalDate.now();
@@ -33,9 +35,7 @@ public class WatchlistsController {
     }
 
     public void mostrar() {
-        System.out.println("------------------------------------------------");
-        System.out.println("                    WATCHLIST                   ");
-        System.out.println("------------------------------------------------");
+        mensagem.layoutMensagem("                   WATCHLIST                   ");
         for(WatchListItem watchlistItem : watchlistDAO.getWatchList().getItensWatchList()) {
             SimpleDateFormat sdfBanco = new SimpleDateFormat("yyyy-MM-dd");
             Date dataBanco;
