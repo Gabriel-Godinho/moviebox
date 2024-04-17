@@ -1,11 +1,13 @@
 package controllers;
 
 import dao.DiretorDAO;
+import dao.NacionalidadeDAO;
 import model.Diretor;
 
 public class DiretoresController {
 
     private final DiretorDAO diretorDAO = new DiretorDAO();
+    private final NacionalidadeDAO nacionalidadeDAO = new NacionalidadeDAO();
 
     public void cadastrarDiretor(String nomeDiretor, long idNacionalidade) {
         Diretor diretor = new Diretor(nomeDiretor, idNacionalidade);
@@ -26,7 +28,7 @@ public class DiretoresController {
         System.out.println("------------------------------------------------");
         for(Diretor diretor : diretorDAO.getAll()) {
             System.out.println( "Nome: " + diretor.getNomeDiretor());
-            System.out.println( "Nacionalidade: " + diretor.getIdNacionalidade());
+            System.out.println( "Nacionalidade: " + nacionalidadeDAO.getById(diretor.getIdNacionalidade()).getNomeNacionalidade());
             System.out.println("------------------------------------------------");
         }
     }

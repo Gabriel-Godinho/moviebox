@@ -10,7 +10,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString @EqualsAndHashCode
-public class Nacionalidades implements Serializable {
+public class Nacionalidade implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
