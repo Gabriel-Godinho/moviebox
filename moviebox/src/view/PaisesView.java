@@ -6,54 +6,46 @@ import java.util.Scanner;
 public class PaisesView {
 
     private final PaisesController CONTROLLER = new PaisesController();
+    private final MensagensView mensagem = new MensagensView();
 
-    public void cadastro() {
-        Scanner input = new Scanner(System.in);
+    public void escolherAcao(Scanner input) {
+        int escolha;
 
+        mensagem.layoutMensagem("           Países - Cadastro/Edição            ");
+        System.out.println(" Para CADASTRAR digite [1] ");
+        System.out.println(" Para EDITAR digite [2] ");
         System.out.println("------------------------------------------------");
-        System.out.println("                Países - Cadastro               ");
+        System.out.print("Sua escolha: ");
+        escolha = input.nextInt();
+
+        if(escolha == 1) cadastro(input);
+        else edicao(input);
+    }
+
+    public void cadastro(Scanner input) {
+
+        mensagem.layoutMensagem("               Países - Cadastro               ");
+        System.out.print(" Nome do país: ");
+        String nomePais = input.nextLine();
+
+        System.out.println("----------------------------------------------");
+
+        CONTROLLER.cadastrarPais(nomePais);
+    }
+
+    public void edicao(Scanner input) {
+
+        mensagem.layoutMensagem("                Países - Edição                ");
+        System.out.print(" ID do país que deseja editar: ");
+        int idPais = input.nextInt();
+
+        mensagem.limparTela(10);
         System.out.println("------------------------------------------------");
         System.out.print("Nome do país: ");
         String nomePais = input.nextLine();
 
         System.out.println("----------------------------------------------");
 
-        CONTROLLER.cadastrarPais(nomePais);
-
-        input.close();
+        CONTROLLER.editarPais(idPais, nomePais);
     }
-
-    public void edicao() {
-        Scanner input = new Scanner(System.in);
-
-        int escolha;
-
-        System.out.println("------------------------------------------------");
-        System.out.println("            Países - Edição/Exclusão            ");
-        System.out.println("------------------------------------------------");
-        System.out.print("ID do país que deseja editar/excluir: ");
-        int idPais = input.nextInt();
-
-        System.out.println("------------------------------------------------");
-        System.out.println(" Para EDITAR digite [1] ");
-        System.out.println(" Para EXCLUIR digite [2] ");
-        System.out.print("Sua escolha: ");
-        escolha = input.nextInt();
-
-        System.out.println("------------------------------------------------");
-
-        if (escolha == 1) {
-            System.out.print("Nome do país: ");
-            String nomePais = input.nextLine();
-
-            System.out.println("----------------------------------------------");
-
-            CONTROLLER.editarPais(idPais, nomePais);
-        } else {
-            CONTROLLER.excluirPais(idPais);
-        }
-
-        input.close();
-    }
-
 }

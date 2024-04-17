@@ -2,6 +2,8 @@ package dao;
 
 import connection.DataBaseConnection;
 import model.PaisOrigem;
+import view.MensagensView;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,6 +12,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class PaisOrigemDAO {
+
+    private final MensagensView mensagem = new MensagensView();
 
     public final Set<PaisOrigem> getAll() {
         Set<PaisOrigem> paises = new HashSet<>();
@@ -27,7 +31,7 @@ public class PaisOrigemDAO {
                 paises.add(paisOrigem);
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao buscar os países cadastrados!");
+            mensagem.layoutMensagem("Erro ao buscar os países cadastrados!");
         }
 
         return paises;
@@ -48,7 +52,7 @@ public class PaisOrigemDAO {
                 paisOrigem.setNomePais(resultSet.getString("nome_pais"));
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao buscar o país especificado!");
+            mensagem.layoutMensagem("Erro ao buscar o país especificado!");
         }
 
         return paisOrigem;
@@ -62,9 +66,9 @@ public class PaisOrigemDAO {
             preparedStatement.setString(1, paisOrigem.getNomePais());
             preparedStatement.executeUpdate();
 
-            System.out.println("País cadastrado com sucesso!");
+            mensagem.layoutMensagem("País cadastrado com sucesso!");
         } catch (SQLException e) {
-            System.out.println("Erro ao cadastrar o novo país!");
+            mensagem.layoutMensagem("Erro ao cadastrar o novo país!");
         }
     }
 
@@ -79,25 +83,10 @@ public class PaisOrigemDAO {
                 preparedStatement.setLong(2, paisOrigem.getIdPais());
                 preparedStatement.executeUpdate();
 
-                System.out.println("País atualizado com sucesso!");
+                mensagem.layoutMensagem("País atualizado com sucesso!");
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao editar o país de origem!");
+            mensagem.layoutMensagem("Erro ao editar o país de origem!");
         }
     }
-
-    public final void delete(long idPais) {
-        try {
-            Connection conn = DataBaseConnection.getInstance().getConn();
-            String sql = "DELETE FROM paises WHERE id_pais = ?";
-            PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setLong(1, idPais);
-            preparedStatement.executeUpdate();
-
-            System.out.println("País excluído com sucesso!");
-        } catch (SQLException e) {
-            System.out.println("Erro ao excluir país de origem!");
-        }
-    }
-
 }

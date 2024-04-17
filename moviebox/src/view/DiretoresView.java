@@ -42,20 +42,19 @@ public class DiretoresView {
 
     public void edicao(Scanner input) {
 
-
         mensagem.layoutMensagem("              Diretores - Edição               ");
         System.out.print(" ID do diretor que deseja editar: ");
         int idDiretor = input.nextInt();
 
         mensagem.limparTela(10);
-
+        System.out.println("------------------------------------------------");
         System.out.println(" Preencha somente os campos que deseja editar e ");
         System.out.println(" marque o restante com [0]: ");
         System.out.println("----------------------------------------------");
-        System.out.print("Nome do diretor: ");
+        System.out.print(" Nome do diretor: ");
             String nomeDiretor = input.nextLine();
         System.out.println("----------------------------------------------");
-        System.out.print("ID do país de origem: ");
+        System.out.print(" ID do país de origem: ");
             int idPais = input.nextInt();
         System.out.println("----------------------------------------------");
 

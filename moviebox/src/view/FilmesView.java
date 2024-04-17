@@ -28,27 +28,27 @@ public class FilmesView {
         mensagem.layoutMensagem("               Filmes - Cadastro               ");
         System.out.println(" Preencha os dados do filme que deseja inserir: ");
         System.out.println("----------------------------------------------");
-        System.out.print("Nome do filme: ");
+        System.out.print(" Nome do filme: ");
         String nomeFilme = input.nextLine();
 
         System.out.println("----------------------------------------------");
-        System.out.print("Duração em minutos: ");
+        System.out.print(" Duração em minutos: ");
         int duracao = input.nextInt();
 
         System.out.println("----------------------------------------------");
-        System.out.print("Ano de lançamento: ");
+        System.out.print(" Ano de lançamento: ");
         int ano = input.nextInt();
 
         System.out.println("----------------------------------------------");
-        System.out.print("Id do diretor: ");
+        System.out.print(" Id do diretor: ");
         int idDiretor = input.nextInt();
 
         System.out.println("----------------------------------------------");
-        System.out.print("ID do país de origem: ");
+        System.out.print(" ID do país de origem: ");
         int idPais = input.nextInt();
 
         System.out.println("----------------------------------------------");
-        System.out.print("Sinopse: ");
+        System.out.print(" Sinopse: ");
         String sinopse = input.nextLine();
 
         System.out.println("----------------------------------------------");

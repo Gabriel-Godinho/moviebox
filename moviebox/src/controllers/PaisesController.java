@@ -2,9 +2,11 @@ package controllers;
 
 import dao.PaisOrigemDAO;
 import model.PaisOrigem;
+import view.MensagensView;
 
 public class PaisesController {
     private final PaisOrigemDAO paisDAO = new PaisOrigemDAO();
+    private final MensagensView mensagem = new MensagensView();
 
     public void cadastrarPais(String nomePais) {
         PaisOrigem pais = new PaisOrigem(nomePais);
@@ -14,16 +16,11 @@ public class PaisesController {
         paisDAO.save(pais);
     }
 
-    public void excluirPais(int idPais) {
-        paisDAO.delete(idPais);
-    }
-
     public void listarPaises() {
-        System.out.println("------------------------------------------------");
-        System.out.println("                     PAÍSES                     ");
-        System.out.println("------------------------------------------------");
+        mensagem.layoutMensagem("                    PAÍSES                     ");
         for(PaisOrigem pais : paisDAO.getAll()) {
-            System.out.println( "Nome: " + pais.getNomePais());
+            System.out.println(" ID: " + pais.getIdPais());
+            System.out.println(" Nome: " + pais.getNomePais());
             System.out.println("------------------------------------------------");
         }
     }
