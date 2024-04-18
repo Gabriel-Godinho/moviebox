@@ -4,7 +4,6 @@ import dao.entities.FilmeDAO;
 import dao.entities.WatchListDAO;
 import model.WatchListItem;
 import view.MensagensView;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
