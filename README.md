@@ -20,7 +20,10 @@ Foi criada uma instância de um banco de dados Postgres no RDS (Relational Datab
 
 AWS RDS (Relationa Database Service): https://aws.amazon.com/pt/rds/
 
-## Modelo conceitual
-## Dicionário de dados (modelo lógico)
-
 # Como executar
+
+- Clonar o repositório
+- Executar os seguintes comandos no terminal
+  - javac Main.java
+  - java Main
+
