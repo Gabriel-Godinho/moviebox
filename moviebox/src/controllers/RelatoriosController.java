@@ -1,7 +1,7 @@
 package controllers;
 
-import dao.DiretorDAO;
-import dao.PaisOrigemDAO;
+import dao.entities.DiretorDAO;
+import dao.entities.PaisOrigemDAO;
 import dao.relatorios.RelatoriosDAO;
 import model.Filme;
 import view.MensagensView;

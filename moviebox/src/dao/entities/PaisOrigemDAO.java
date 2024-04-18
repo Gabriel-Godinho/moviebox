@@ -1,4 +1,4 @@
-package dao;
+package dao.entities;
 
 import connection.DataBaseConnection;
 import model.PaisOrigem;

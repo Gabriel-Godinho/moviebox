@@ -1,7 +1,7 @@
 package controllers;
 
-import dao.FilmeDAO;
-import dao.WatchListDAO;
+import dao.entities.FilmeDAO;
+import dao.entities.WatchListDAO;
 import model.WatchListItem;
 import view.MensagensView;
 

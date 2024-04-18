@@ -1,6 +1,6 @@
 package controllers;
 
-import dao.PaisOrigemDAO;
+import dao.entities.PaisOrigemDAO;
 import model.PaisOrigem;
 import view.MensagensView;
 

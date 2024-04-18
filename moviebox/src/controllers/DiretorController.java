@@ -1,7 +1,7 @@
 package controllers;
 
-import dao.DiretorDAO;
-import dao.NacionalidadeDAO;
+import dao.entities.DiretorDAO;
+import dao.entities.NacionalidadeDAO;
 import model.Diretor;
 import view.MensagensView;
 
