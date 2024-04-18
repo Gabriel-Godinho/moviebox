@@ -34,7 +34,7 @@ public class RelatoriosDAO {
             preparedStatement.setLong(1, idDiretor);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            if (resultSet.next()) {
+            while (resultSet.next()) {
                 Filme filme = new Filme();
                 filme.setIdDiretor(resultSet.getLong("id_filme"));
                 filme.setNomeFilme(resultSet.getString("nome_filme"));
@@ -72,7 +72,7 @@ public class RelatoriosDAO {
             preparedStatement.setLong(1, idPais);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            if (resultSet.next()) {
+            while (resultSet.next()) {
                 Filme filme = new Filme();
                 filme.setIdDiretor(resultSet.getLong("id_filme"));
                 filme.setNomeFilme(resultSet.getString("nome_filme"));
@@ -110,7 +110,7 @@ public class RelatoriosDAO {
             preparedStatement.setLong(1, anoInsercao);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            if (resultSet.next()) {
+            while (resultSet.next()) {
                 Filme filme = new Filme();
                 filme.setIdDiretor(resultSet.getLong("id_filme"));
                 filme.setNomeFilme(resultSet.getString("nome_filme"));
