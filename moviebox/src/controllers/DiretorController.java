@@ -3,7 +3,13 @@ package controllers;
 import dao.entities.DiretorDAO;
 import dao.entities.NacionalidadeDAO;
 import model.Diretor;
+import model.Filme;
 import view.MensagensView;
+
+import java.util.Comparator;
+import java.util.LinkedHashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class DiretorController {
 
@@ -23,7 +29,8 @@ public class DiretorController {
     public void listarDiretores() {
         MENSAGEM_VIEW.layoutMensagem("                   DIRETORES                   ");
 
-        for (Diretor diretor : DIRETOR_DAO.getAll()) {
+        Set<Diretor> diretoresOrdenados = DIRETOR_DAO.getAll().stream().sorted(Comparator.comparing(Diretor::getIdDiretor)).collect(Collectors.toCollection(LinkedHashSet::new));
+        for (Diretor diretor : diretoresOrdenados) {
             System.out.println(" ID: " + diretor.getIdDiretor());
             System.out.println(" Nome: " + diretor.getNomeDiretor());
             System.out.println(" Nacionalidade: " + NACIONALIDADE_DAO.getById(diretor.getIdNacionalidade()).getNomeNacionalidade());

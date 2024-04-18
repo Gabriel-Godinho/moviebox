@@ -34,7 +34,8 @@ public class WatchlistController {
 
     public void mostrar() {
         MENSAGEM_VIEW.layoutMensagem("                   WATCHLIST                   ");
-        for(WatchListItem watchlistItem : WATCHLIST_DAO.getWatchList().getItensWatchList()) {
+
+        for (WatchListItem watchlistItem : WATCHLIST_DAO.getWatchList().getItensWatchList()) {
             SimpleDateFormat sdfBanco = new SimpleDateFormat("yyyy-MM-dd");
             Date dataBanco;
 

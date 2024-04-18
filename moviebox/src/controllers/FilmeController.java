@@ -7,6 +7,11 @@ import dao.entities.WatchListDAO;
 import model.Filme;
 import view.MensagensView;
 
+import java.util.Comparator;
+import java.util.LinkedHashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 public class FilmeController {
 
     private final MensagensView MENSAGEM_VIEW = new MensagensView();
@@ -36,7 +41,9 @@ public class FilmeController {
 
     public void listarFilmes() {
         MENSAGEM_VIEW.layoutMensagem("                    FILMES                     ");
-        for(Filme filme : FILME_DAO.getAll()) {
+
+        Set<Filme> filmesOrdenados = FILME_DAO.getAll().stream().sorted(Comparator.comparing(Filme::getIdFilme)).collect(Collectors.toCollection(LinkedHashSet::new));
+        for (Filme filme : filmesOrdenados) {
             System.out.println(" ID: " + filme.getIdFilme());
             System.out.println(" Nome: " + filme.getNomeFilme());
             System.out.println(" Diretor: " + DIRETOR_DAO.getById(filme.getIdDiretor()).getNomeDiretor());

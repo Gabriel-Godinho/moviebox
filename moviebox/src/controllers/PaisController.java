@@ -1,8 +1,14 @@
 package controllers;
 
 import dao.entities.PaisOrigemDAO;
+import model.Diretor;
 import model.PaisOrigem;
 import view.MensagensView;
+
+import java.util.Comparator;
+import java.util.LinkedHashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class PaisController {
 
@@ -20,7 +26,8 @@ public class PaisController {
     public void listarPaises() {
         MENSAGEM_VIEW.layoutMensagem("                    PAÍSES                     ");
 
-        for (PaisOrigem pais : PAIS_DAO.getAll()) {
+        Set<PaisOrigem> paisesOrdenados = PAIS_DAO.getAll().stream().sorted(Comparator.comparing(PaisOrigem::getIdPais)).collect(Collectors.toCollection(LinkedHashSet::new));
+        for (PaisOrigem pais : paisesOrdenados) {
             System.out.println(" ID: " + pais.getIdPais());
             System.out.println(" Nome: " + pais.getNomePais());
             System.out.println("------------------------------------------------");

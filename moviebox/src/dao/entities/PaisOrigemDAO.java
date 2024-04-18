@@ -20,7 +20,7 @@ public class PaisOrigemDAO {
 
         try {
             Connection conn = DataBaseConnection.getInstance().getConn();
-            String sql = "SELECT * FROM paises ORDER BY id_pais";
+            String sql = "SELECT * FROM paises";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
 
