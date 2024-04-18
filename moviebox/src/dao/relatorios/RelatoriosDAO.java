@@ -104,7 +104,7 @@ public class RelatoriosDAO {
             String sql = """
                     SELECT * FROM filmes AS f INNER JOIN watchlist AS w
                     ON f.id_filme = w.id_filme
-                    WHERE YEAR(w.data_insercao_filme) = ?
+                    WHERE DATE_PART('year', w.data_insercao_filme) = ?
                     """;
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setLong(1, anoInsercao);

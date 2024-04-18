@@ -76,7 +76,7 @@ public class Main {
                     escolha = input.nextInt();
                     break;
                 case 11:
-                    mensagem.limparTela(6);
+//                    mensagem.limparTela(6);
                     System.exit(0);
                     break;
                 default:
