@@ -25,7 +25,7 @@ AWS RDS (Relationa Database Service): https://aws.amazon.com/pt/rds/
 # Como executar
 
 - Clonar o repositório
-- **ATENÇÃO!** O projeto utiliza duas bibliotecas externas (JDBC do banco de dados e Lombok). Caso a IDE utilizada não inclua automaticamente as bibliotecas será necessário incluí-las. A IDE utilizada para o desenvolvimento do projeto foi o IntelliJ. Para incluir as bibliotecas no IntelliJ é necessário ir em "File" - "Project Structure" - "Libraries" e por fim clicar no símbolo de "+" e adicionar o caminho do arquivo jar.
+- **ATENÇÃO!** O projeto utiliza duas bibliotecas externas (JDBC do banco de dados e Lombok) que se encontram na pasta "lib" do projeto. Caso a IDE utilizada não inclua automaticamente as bibliotecas será necessário incluí-las. A IDE utilizada para o desenvolvimento do projeto foi o IntelliJ. Para incluir as bibliotecas no IntelliJ é necessário ir em "File" - "Project Structure" - "Libraries" e por fim clicar no símbolo de "+" e adicionar o caminho do arquivo jar.
 ![img.png](intellij.png)
 - Executar os seguintes comandos no terminal ou utilizar o "play" da IDE.
   - javac Main.java
