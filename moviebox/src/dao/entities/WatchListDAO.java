@@ -4,10 +4,10 @@ import connection.DataBaseConnection;
 import model.WatchList;
 import model.WatchListItem;
 import view.MensagensView;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
+import java.sql.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class WatchListDAO {
@@ -43,7 +43,7 @@ public class WatchListDAO {
             String sql = "INSERT INTO watchlist(id_filme, data_insercao_filme) VALUES(?, ?)";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setLong(1, watchListItem.getIdFilme());
-            preparedStatement.setString(2, watchListItem.getDataInsercaoFilme());
+            preparedStatement.setDate(2, Date.valueOf(watchListItem.getDataInsercaoFilme()));
             preparedStatement.executeUpdate();
 
             mensagem.layoutMensagem("Filme adicionado na watchlist com sucesso!");
