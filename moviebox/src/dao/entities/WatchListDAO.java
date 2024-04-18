@@ -43,7 +43,6 @@ public class WatchListDAO {
             String sql = "SELECT * FROM watchlist WHERE id_filme = ?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setLong(1, idFilme);
-            preparedStatement.executeUpdate();
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
