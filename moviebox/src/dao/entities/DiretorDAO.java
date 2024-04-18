@@ -81,12 +81,12 @@ public class DiretorDAO {
 
             List<Object> params = new ArrayList<>();
 
-            if (!diretor.getNomeDiretor().isEmpty()) {
+            if (!diretor.getNomeDiretor().equals("0")) {
                 sb.append(" nome_diretor = ?,");
                 params.add(diretor.getNomeDiretor());
             }
 
-            if (diretor.getIdNacionalidade() == 0) {
+            if (diretor.getIdNacionalidade() != 0) {
                 sb.append(" id_nacionalidade = ?,");
                 params.add(diretor.getIdNacionalidade());
             }

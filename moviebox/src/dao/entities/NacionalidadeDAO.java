@@ -2,7 +2,6 @@ package dao.entities;
 
 import connection.DataBaseConnection;
 import model.Nacionalidade;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,7 +14,7 @@ public class NacionalidadeDAO {
 
         try {
             Connection conn = DataBaseConnection.getInstance().getConn();
-            String sql = "SELECT * FROM nacionalidades WHERE id_nacionalidade = ?";
+            String sql = "SELECT * FROM nacionalidades WHERE id_pais = ?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setLong(1, idNacionalidade);
             ResultSet resultSet = preparedStatement.executeQuery();

@@ -26,6 +26,7 @@ public class PaisView {
 
         mensagem.layoutMensagem("               Países - Cadastro               ");
         System.out.print(" Nome do país: ");
+        input.nextLine();
         String nomePais = input.nextLine();
 
         System.out.println("----------------------------------------------");
@@ -42,6 +43,7 @@ public class PaisView {
         mensagem.limparTela(10);
         System.out.println("------------------------------------------------");
         System.out.print("Nome do país: ");
+        input.nextLine();
         String nomePais = input.nextLine();
 
         System.out.println("----------------------------------------------");

@@ -28,6 +28,7 @@ public class DiretorView {
         System.out.println(" Preencha os dados do diretor: ");
         System.out.println("----------------------------------------------");
         System.out.print(" Nome do diretor: ");
+        input.nextLine();
         String nomeDiretor = input.nextLine();
 
         System.out.println("----------------------------------------------");
@@ -51,6 +52,7 @@ public class DiretorView {
         System.out.println(" marque o restante com [0]: ");
         System.out.println("----------------------------------------------");
         System.out.print(" Nome do diretor: ");
+        input.nextLine();
             String nomeDiretor = input.nextLine();
         System.out.println("----------------------------------------------");
         System.out.print(" ID do país de origem: ");
