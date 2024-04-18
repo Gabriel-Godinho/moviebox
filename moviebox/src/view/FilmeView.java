@@ -1,11 +1,11 @@
 package view;
 
-import controllers.FilmesController;
+import controllers.FilmeController;
 import java.util.Scanner;
 
-public class FilmesView {
+public class FilmeView {
 
-    private final FilmesController CONTROLLER = new FilmesController();
+    private final FilmeController CONTROLLER = new FilmeController();
     private final MensagensView mensagem = new MensagensView();
 
     public void escolherAcao(Scanner input) {

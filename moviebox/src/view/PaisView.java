@@ -1,11 +1,11 @@
 package view;
 
-import controllers.PaisesController;
+import controllers.PaisController;
 import java.util.Scanner;
 
-public class PaisesView {
+public class PaisView {
 
-    private final PaisesController CONTROLLER = new PaisesController();
+    private final PaisController CONTROLLER = new PaisController();
     private final MensagensView mensagem = new MensagensView();
 
     public void escolherAcao(Scanner input) {

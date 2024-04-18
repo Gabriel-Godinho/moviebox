@@ -17,43 +17,43 @@ public class Main {
             switch (escolha) {
                 case 1:
                     mensagem.limparTela(6);
-                    new FilmesView().escolherAcao(input);
+                    new FilmeView().escolherAcao(input);
                     mensagem.retornarMenu();
                     escolha = input.nextInt();
                     break;
                 case 2:
                     mensagem.limparTela(10);
-                    new FilmesView().excluir(input);
+                    new FilmeView().excluir(input);
                     mensagem.retornarMenu();
                     escolha = input.nextInt();
                     break;
                 case 3:
                     mensagem.limparTela(6);
-                    new FilmesController().listarFilmes();
+                    new FilmeController().listarFilmes();
                     mensagem.retornarMenu();
                     escolha = input.nextInt();
                     break;
                 case 4:
                     mensagem.limparTela(6);
-                    new DiretoresView().escolherAcao(input);
+                    new DiretorView().escolherAcao(input);
                     mensagem.retornarMenu();
                     escolha = input.nextInt();
                     break;
                 case 5:
                     mensagem.limparTela(6);
-                    new DiretoresController().listarDiretores();
+                    new DiretorController().listarDiretores();
                     mensagem.retornarMenu();
                     escolha = input.nextInt();
                     break;
                 case 6:
                     mensagem.limparTela(6);
-                    new PaisesView().escolherAcao(input);
+                    new PaisView().escolherAcao(input);
                     mensagem.retornarMenu();
                     escolha = input.nextInt();
                     break;
                 case 7:
                     mensagem.limparTela(6);
-                    new PaisesController().listarPaises();
+                    new PaisController().listarPaises();
                     mensagem.retornarMenu();
                     escolha = input.nextInt();
                     break;
@@ -65,7 +65,7 @@ public class Main {
                     break;
                 case 9:
                     mensagem.limparTela(6);
-                    new WatchlistsController().mostrar();
+                    new WatchlistController().mostrar();
                     mensagem.retornarMenu();
                     escolha = input.nextInt();
                     break;

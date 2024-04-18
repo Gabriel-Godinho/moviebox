@@ -8,33 +8,33 @@ import view.MensagensView;
 
 public class RelatoriosController {
 
-    private final RelatoriosDAO relatoriosDAO = new RelatoriosDAO();
-    private final DiretorDAO diretorDAO = new DiretorDAO();
-    private final PaisOrigemDAO paisDAO = new PaisOrigemDAO();
-    private final MensagensView mensagem = new MensagensView();
+    private final RelatoriosDAO RELATORIOS_DAO = new RelatoriosDAO();
+    private final DiretorDAO DIRETOR_DAO = new DiretorDAO();
+    private final PaisOrigemDAO PAIS_DAO = new PaisOrigemDAO();
+    private final MensagensView MENSAGEM_VIEW = new MensagensView();
 
     public void listarFilmesNaWatchlistPorDiretor(long idDiretor) {
-        mensagem.limparTela(6);
-        mensagem.layoutMensagem("Filmes por " + diretorDAO.getById(idDiretor).getNomeDiretor() + " na watchlist");
+        MENSAGEM_VIEW.limparTela(6);
+        MENSAGEM_VIEW.layoutMensagem("Filmes por " + DIRETOR_DAO.getById(idDiretor).getNomeDiretor() + " na watchlist");
 
-        for (Filme filme : relatoriosDAO.buscarFilmesNaWatchlistPorDiretor(idDiretor)) {
+        for (Filme filme : RELATORIOS_DAO.buscarFilmesNaWatchlistPorDiretor(idDiretor)) {
             System.out.println( "Nome: " + filme.getNomeFilme());
 //            System.out.println( "Diretor: " + diretorDAO.getById(filme.getIdDiretor()).getNomeDiretor());
             System.out.println( "Duração: " + filme.getDuracao() + " minutos");
             System.out.println( "Ano de lançamento: " + filme.getAno());
-            System.out.println( "País de origem: " + paisDAO.getById(filme.getIdPais()).getNomePais());
+            System.out.println( "País de origem: " + PAIS_DAO.getById(filme.getIdPais()).getNomePais());
             System.out.println( "Sinopse: " + filme.getSinopse());
             System.out.println("------------------------------------------------");
         }
     }
 
     public void listarFilmesNaWatchlistPorPais(long idPais) {
-        mensagem.limparTela(6);
-        mensagem.layoutMensagem(paisDAO.getById(idPais).getNomePais() + " na sua watchlist");
+        MENSAGEM_VIEW.limparTela(6);
+        MENSAGEM_VIEW.layoutMensagem(PAIS_DAO.getById(idPais).getNomePais() + " na sua watchlist");
 
-        for (Filme filme : relatoriosDAO.buscarFilmesNaWatchlistPorPais(idPais)) {
+        for (Filme filme : RELATORIOS_DAO.buscarFilmesNaWatchlistPorPais(idPais)) {
             System.out.println( "Nome: " + filme.getNomeFilme());
-            System.out.println( "Diretor: " + diretorDAO.getById(filme.getIdDiretor()).getNomeDiretor());
+            System.out.println( "Diretor: " + DIRETOR_DAO.getById(filme.getIdDiretor()).getNomeDiretor());
             System.out.println( "Duração: " + filme.getDuracao() + " minutos");
             System.out.println( "Ano de lançamento: " + filme.getAno());
             System.out.println( "Sinopse: " + filme.getSinopse());
@@ -46,15 +46,15 @@ public class RelatoriosController {
 //        LocalDate localDate = LocalDate.parse(dataInsercao, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 //        String dataFormatada = localDate.format(DateTimeFormatter.ISO_LOCAL_DATE);
 
-        mensagem.limparTela(6);
-        mensagem.layoutMensagem("Filmes adicionados na sua watchlist em " + anoInsercao);
+        MENSAGEM_VIEW.limparTela(6);
+        MENSAGEM_VIEW.layoutMensagem("Filmes adicionados na sua watchlist em " + anoInsercao);
 
-        for (Filme filme : relatoriosDAO.buscarFilmesNaWatchlistPorAnoInserido(anoInsercao)) {
+        for (Filme filme : RELATORIOS_DAO.buscarFilmesNaWatchlistPorAnoInserido(anoInsercao)) {
             System.out.println( "Nome: " + filme.getNomeFilme());
-            System.out.println( "Diretor: " + diretorDAO.getById(filme.getIdDiretor()).getNomeDiretor());
+            System.out.println( "Diretor: " + DIRETOR_DAO.getById(filme.getIdDiretor()).getNomeDiretor());
             System.out.println( "Duração: " + filme.getDuracao() + " minutos");
             System.out.println( "Ano de lançamento: " + filme.getAno());
-            System.out.println( "País de origem: " + paisDAO.getById(filme.getIdPais()).getNomePais());
+            System.out.println( "País de origem: " + PAIS_DAO.getById(filme.getIdPais()).getNomePais());
             System.out.println( "Sinopse: " + filme.getSinopse());
             System.out.println("------------------------------------------------");
         }

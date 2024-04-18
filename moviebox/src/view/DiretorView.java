@@ -1,11 +1,11 @@
 package view;
 
-import controllers.DiretoresController;
+import controllers.DiretorController;
 import java.util.Scanner;
 
-public class DiretoresView {
+public class DiretorView {
 
-    private final DiretoresController CONTROLLER = new DiretoresController();
+    private final DiretorController CONTROLLER = new DiretorController();
     private final MensagensView mensagem = new MensagensView();
 
     public void escolherAcao(Scanner input) {

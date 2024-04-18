@@ -4,21 +4,23 @@ import dao.PaisOrigemDAO;
 import model.PaisOrigem;
 import view.MensagensView;
 
-public class PaisesController {
-    private final PaisOrigemDAO paisDAO = new PaisOrigemDAO();
-    private final MensagensView mensagem = new MensagensView();
+public class PaisController {
+
+    private final PaisOrigemDAO PAIS_DAO = new PaisOrigemDAO();
+    private final MensagensView MENSAGEM_VIEW = new MensagensView();
 
     public void cadastrarPais(String nomePais) {
         PaisOrigem pais = new PaisOrigem(nomePais);
 
         pais.setNomePais(nomePais);
 
-        paisDAO.save(pais);
+        PAIS_DAO.save(pais);
     }
 
     public void listarPaises() {
-        mensagem.layoutMensagem("                    PAÍSES                     ");
-        for(PaisOrigem pais : paisDAO.getAll()) {
+        MENSAGEM_VIEW.layoutMensagem("                    PAÍSES                     ");
+
+        for (PaisOrigem pais : PAIS_DAO.getAll()) {
             System.out.println(" ID: " + pais.getIdPais());
             System.out.println(" Nome: " + pais.getNomePais());
             System.out.println("------------------------------------------------");
@@ -27,6 +29,8 @@ public class PaisesController {
 
     public void editarPais(int idPais, String nomePais) {
         PaisOrigem pais = new PaisOrigem(idPais, nomePais);
-        paisDAO.update(pais);
+
+        PAIS_DAO.update(pais);
     }
+
 }

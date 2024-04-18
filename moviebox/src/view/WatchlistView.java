@@ -1,11 +1,11 @@
 package view;
 
-import controllers.WatchlistsController;
+import controllers.WatchlistController;
 import java.util.Scanner;
 
 public class WatchlistView {
 
-    private final WatchlistsController CONTROLLER = new WatchlistsController();
+    private final WatchlistController CONTROLLER = new WatchlistController();
     private final MensagensView mensagem = new MensagensView();
 
     public void escolherAcao(Scanner input) {
