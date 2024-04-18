@@ -37,6 +37,24 @@ public class WatchListDAO {
         return watchList;
     }
 
+    public final boolean existsFilmeInWatchList(long idFilme) {
+        try {
+            Connection conn = DataBaseConnection.getInstance().getConn();
+            String sql = "SELECT * FROM watchlist WHERE id_filme = ?";
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setLong(1, idFilme);
+            preparedStatement.executeUpdate();
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            return resultSet.next();
+        } catch (SQLException e) {
+            mensagem.layoutMensagem("Erro ao adicionar filme na watchlist!");
+        }
+
+        return false;
+    }
+
     public final void saveWatchListItem(WatchListItem watchListItem) {
         try {
             Connection conn = DataBaseConnection.getInstance().getConn();

@@ -34,7 +34,9 @@ public class FilmeController {
     }
 
     public void excluirFilme(int idFilme) {
-        WATCHLIST_DAO.deleteWatchListItem(idFilme);
+        if (WATCHLIST_DAO.existsFilmeInWatchList(idFilme)) {
+            WATCHLIST_DAO.deleteWatchListItem(idFilme);
+        }
 
         FILME_DAO.delete(idFilme);
     }
