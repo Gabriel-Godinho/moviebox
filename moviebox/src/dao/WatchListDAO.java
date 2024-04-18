@@ -65,4 +65,5 @@ public class WatchListDAO {
             mensagem.layoutMensagem("Erro ao remover o filme da watchlist!");
         }
     }
+
 }

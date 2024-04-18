@@ -136,12 +136,11 @@ public class FilmeDAO {
 
             for (int i = 0; i < params.size(); i++) {
                 Object value = params.get(i);
-                if (value instanceof String) {
-                    preparedStatement.setString(i + 1, (String) value);
-                } else if (value instanceof Integer) {
-                    preparedStatement.setInt(i + 1, (Integer) value);
-                } else if (value instanceof Long) {
-                    preparedStatement.setLong(i + 1, (Long) value);
+                switch (value) {
+                    case String str -> preparedStatement.setString(i + 1, str);
+                    case Integer integer -> preparedStatement.setInt(i + 1, integer);
+                    case Long longInt -> preparedStatement.setLong(i + 1, longInt);
+                    default -> {}
                 }
             }
 
