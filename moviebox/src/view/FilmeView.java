@@ -68,7 +68,7 @@ public class FilmeView {
         System.out.println(" marque o restante com [0]: ");
         System.out.println("----------------------------------------------");
         System.out.print(" Nome do filme: ");
-        input.next();
+        input.nextLine();
         String nomeFilme = input.nextLine();
 
         System.out.println("----------------------------------------------");
@@ -89,7 +89,7 @@ public class FilmeView {
 
         System.out.println("----------------------------------------------");
         System.out.print(" Sinopse: ");
-        input.next();
+        input.nextLine();
         String sinopse = input.nextLine();
 
         CONTROLLER.editarFilme(idFilme, nomeFilme, duracao, ano, idDiretor, idPais, sinopse);
