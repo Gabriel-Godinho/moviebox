@@ -90,6 +90,13 @@ public class RelatoriosDAO {
         return filmes;
     }
 
+    /**
+     * Busca todos os filmes de um determinado país
+     * inseridos na watchlist.
+     *
+     * @param anoInsercao Ano de inserção do filme.
+     * @return Todos os filmes da watchlist adicionados dentro do período especificado.
+     * */
     public final Set<Filme> buscarFilmesNaWatchlistPorAnoInserido(int anoInsercao) {
         Set<Filme> filmes = new HashSet<>();
         try {
@@ -120,4 +127,5 @@ public class RelatoriosDAO {
 
         return filmes;
     }
+
 }
