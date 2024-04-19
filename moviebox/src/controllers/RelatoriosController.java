@@ -29,11 +29,39 @@ public class RelatoriosController {
         }
     }
 
+    public void listarFilmesPorDiretor(long idDiretor) {
+        MENSAGEM_VIEW.limparTela(6);
+        MENSAGEM_VIEW.layoutMensagem("Filmes por " + (DIRETOR_DAO.getById(idDiretor).getNomeDiretor()).toUpperCase() + " na MovieBox");
+
+        for (Filme filme : RELATORIOS_DAO.buscarFilmesPorDiretor(idDiretor)) {
+            System.out.println(" Nome: " + filme.getNomeFilme());
+            System.out.println(" Duração: " + filme.getDuracao() + " minutos");
+            System.out.println(" Ano de lançamento: " + filme.getAno());
+            System.out.println(" País de origem: " + PAIS_DAO.getById(filme.getIdPais()).getNomePais());
+            System.out.println(" Sinopse: " + filme.getSinopse());
+            System.out.println("------------------------------------------------");
+        }
+    }
+
     public void listarFilmesNaWatchlistPorPais(long idPais) {
         MENSAGEM_VIEW.limparTela(6);
         MENSAGEM_VIEW.layoutMensagem((PAIS_DAO.getById(idPais).getNomePais()).toUpperCase() + " na sua watchlist");
 
         for (Filme filme : RELATORIOS_DAO.buscarFilmesNaWatchlistPorPais(idPais)) {
+            System.out.println(" Nome: " + filme.getNomeFilme());
+            System.out.println(" Diretor: " + DIRETOR_DAO.getById(filme.getIdDiretor()).getNomeDiretor());
+            System.out.println(" Duração: " + filme.getDuracao() + " minutos");
+            System.out.println(" Ano de lançamento: " + filme.getAno());
+            System.out.println(" Sinopse: " + filme.getSinopse());
+            System.out.println("------------------------------------------------");
+        }
+    }
+
+    public void listarFilmesPorPais(long idPais) {
+        MENSAGEM_VIEW.limparTela(6);
+        MENSAGEM_VIEW.layoutMensagem((PAIS_DAO.getById(idPais).getNomePais()).toUpperCase() + " na MovieBox");
+
+        for (Filme filme : RELATORIOS_DAO.buscarFilmesPorPais(idPais)) {
             System.out.println(" Nome: " + filme.getNomeFilme());
             System.out.println(" Diretor: " + DIRETOR_DAO.getById(filme.getIdDiretor()).getNomeDiretor());
             System.out.println(" Duração: " + filme.getDuracao() + " minutos");
