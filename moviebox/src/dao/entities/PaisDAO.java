@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Set;
 
-public class PaisOrigemDAO {
+public class PaisDAO {
 
     private final MensagensView mensagem = new MensagensView();
 

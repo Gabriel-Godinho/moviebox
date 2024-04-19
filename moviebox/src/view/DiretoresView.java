@@ -1,9 +1,10 @@
 package view;
 
 import controllers.DiretorController;
+import java.util.ArrayList;
 import java.util.Scanner;
 
-public class DiretorView {
+public class DiretoresView {
 
     private final DiretorController CONTROLLER = new DiretorController();
     private final MensagensView mensagem = new MensagensView();
@@ -24,24 +25,18 @@ public class DiretorView {
 
     public void cadastro(Scanner input) {
 
+        mensagem.limparTela(5);
         mensagem.layoutMensagem("             Diretores - Cadastro              ");
         System.out.println(" Preencha os dados do diretor: ");
-        System.out.println("----------------------------------------------");
-        System.out.print(" Nome do diretor: ");
-        input.nextLine();
-        String nomeDiretor = input.nextLine();
 
-        System.out.println("----------------------------------------------");
-        System.out.print(" ID do país de origem: ");
-        int idPais = input.nextInt();
+        ArrayList<Object> dados = formulario(input);
 
-        System.out.println("----------------------------------------------");
-
-        CONTROLLER.cadastrarDiretor(nomeDiretor, idPais);
+        CONTROLLER.cadastrarDiretor((String)dados.getFirst(), (int)dados.getLast());
     }
 
     public void edicao(Scanner input) {
 
+        mensagem.limparTela(6);
         mensagem.layoutMensagem("              Diretores - Edição               ");
         System.out.print(" ID do diretor que deseja editar: ");
         int idDiretor = input.nextInt();
@@ -50,16 +45,26 @@ public class DiretorView {
         System.out.println("------------------------------------------------");
         System.out.println(" Preencha somente os campos que deseja editar e ");
         System.out.println(" marque o restante com [0]: ");
+
+        ArrayList<Object> dados = formulario(input);
+
+        CONTROLLER.editarDiretor(idDiretor, (String)dados.getFirst(), (int)dados.getLast());
+    }
+
+    private ArrayList<Object> formulario(Scanner input) {
+        var dados = new ArrayList<>();
+
         System.out.println("----------------------------------------------");
         System.out.print(" Nome do diretor: ");
         input.nextLine();
-            String nomeDiretor = input.nextLine();
+        String nomeDiretor = input.nextLine();
+        dados.add(nomeDiretor);
+
         System.out.println("----------------------------------------------");
         System.out.print(" ID do país de origem: ");
-            int idPais = input.nextInt();
-        System.out.println("----------------------------------------------");
+        int idPais = input.nextInt();
+        dados.add(idPais);
 
-        CONTROLLER.editarDiretor(idDiretor, nomeDiretor, idPais);
+        return dados;
     }
-
 }

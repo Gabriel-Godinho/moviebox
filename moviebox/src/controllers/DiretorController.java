@@ -3,7 +3,6 @@ package controllers;
 import dao.entities.DiretorDAO;
 import dao.entities.NacionalidadeDAO;
 import model.Diretor;
-import model.Filme;
 import view.MensagensView;
 
 import java.util.Comparator;
@@ -43,5 +42,4 @@ public class DiretorController {
 
         DIRETOR_DAO.update(diretor);
     }
-
 }

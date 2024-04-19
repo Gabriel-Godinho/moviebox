@@ -4,10 +4,7 @@ import connection.DataBaseConnection;
 import model.WatchList;
 import model.WatchListItem;
 import view.MensagensView;
-
 import java.sql.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
@@ -102,5 +99,4 @@ public class WatchListDAO {
             mensagem.layoutMensagem("Erro ao remover o filme da watchlist!");
         }
     }
-
 }

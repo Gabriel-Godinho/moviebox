@@ -3,7 +3,7 @@ package view;
 import controllers.PaisController;
 import java.util.Scanner;
 
-public class PaisView {
+public class PaisesView {
 
     private final PaisController CONTROLLER = new PaisController();
     private final MensagensView mensagem = new MensagensView();
@@ -24,30 +24,31 @@ public class PaisView {
 
     public void cadastro(Scanner input) {
 
+        mensagem.limparTela(7);
         mensagem.layoutMensagem("               Países - Cadastro               ");
-        System.out.print(" Nome do país: ");
-        input.nextLine();
-        String nomePais = input.nextLine();
 
-        System.out.println("----------------------------------------------");
+        String nomePais = formulario(input);
 
         CONTROLLER.cadastrarPais(nomePais);
     }
 
     public void edicao(Scanner input) {
 
+        mensagem.limparTela(6);
         mensagem.layoutMensagem("                Países - Edição                ");
         System.out.print(" ID do país que deseja editar: ");
         int idPais = input.nextInt();
-
-        mensagem.limparTela(10);
         System.out.println("------------------------------------------------");
-        System.out.print("Nome do país: ");
-        input.nextLine();
-        String nomePais = input.nextLine();
 
-        System.out.println("----------------------------------------------");
+        String nomePais = formulario(input);
 
         CONTROLLER.editarPais(idPais, nomePais);
+    }
+
+    private String formulario(Scanner input) {
+        System.out.print(" Nome do país: ");
+        input.nextLine();
+
+        return input.nextLine();
     }
 }

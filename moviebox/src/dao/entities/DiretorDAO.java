@@ -69,8 +69,10 @@ public class DiretorDAO {
             preparedStatement.setString(1, diretor.getNomeDiretor());
             preparedStatement.setLong(2, diretor.getIdNacionalidade());
             preparedStatement.executeUpdate();
+
+            mensagem.layoutMensagem("Diretor cadastrado com sucesso!");
         } catch (SQLException e) {
-            mensagem.layoutMensagem("Erro ao inserir o novo diretor!");
+            mensagem.layoutMensagem("Erro ao cadastrar o novo diretor!");
         }
     }
 

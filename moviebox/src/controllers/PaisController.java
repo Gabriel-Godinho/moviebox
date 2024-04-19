@@ -1,10 +1,8 @@
 package controllers;
 
-import dao.entities.PaisOrigemDAO;
-import model.Diretor;
+import dao.entities.PaisDAO;
 import model.PaisOrigem;
 import view.MensagensView;
-
 import java.util.Comparator;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -12,7 +10,7 @@ import java.util.stream.Collectors;
 
 public class PaisController {
 
-    private final PaisOrigemDAO PAIS_DAO = new PaisOrigemDAO();
+    private final PaisDAO PAIS_DAO = new PaisDAO();
     private final MensagensView MENSAGEM_VIEW = new MensagensView();
 
     public void cadastrarPais(String nomePais) {
@@ -39,5 +37,4 @@ public class PaisController {
 
         PAIS_DAO.update(pais);
     }
-
 }

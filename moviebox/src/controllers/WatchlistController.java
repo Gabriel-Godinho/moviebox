@@ -11,7 +11,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class WatchlistController {
 
@@ -22,9 +21,6 @@ public class WatchlistController {
     public void inserirFilme(int idFilme) {
         LocalDate localDate = LocalDate.now();
         String dataFormatada = localDate.format(DateTimeFormatter.ISO_LOCAL_DATE);
-
-        System.out.println(idFilme);
-        System.out.println(dataFormatada);
 
         WatchListItem watchlistItem = new WatchListItem(idFilme, dataFormatada);
 
@@ -52,10 +48,10 @@ public class WatchlistController {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             String data = sdf.format(dataBanco);
 
+            System.out.println( "ID do filme: " + watchlistItem.getIdFilme());
             System.out.println( "Filme: " + FILME_DAO.getById(watchlistItem.getIdFilme()).getNomeFilme() );
             System.out.println( "Adicionado em: " + data);
             System.out.println("------------------------------------------------");
         }
     }
-
 }

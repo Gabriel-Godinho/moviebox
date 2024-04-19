@@ -2,11 +2,10 @@ package controllers;
 
 import dao.entities.DiretorDAO;
 import dao.entities.FilmeDAO;
-import dao.entities.PaisOrigemDAO;
+import dao.entities.PaisDAO;
 import dao.entities.WatchListDAO;
 import model.Filme;
 import view.MensagensView;
-
 import java.util.Comparator;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -17,7 +16,7 @@ public class FilmeController {
     private final MensagensView MENSAGEM_VIEW = new MensagensView();
     private final FilmeDAO FILME_DAO = new FilmeDAO();
     private final WatchListDAO WATCHLIST_DAO = new WatchListDAO();
-    private final PaisOrigemDAO PAIS_DAO = new PaisOrigemDAO();
+    private final PaisDAO PAIS_DAO = new PaisDAO();
     private final DiretorDAO DIRETOR_DAO = new DiretorDAO();
 
     public void cadastrarFilme(String nomeFilme, int duracao, int ano, long idDiretor, long idPais, String sinopse) {
@@ -62,5 +61,4 @@ public class FilmeController {
 
         FILME_DAO.update(filme);
     }
-
 }

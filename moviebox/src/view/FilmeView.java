@@ -1,6 +1,8 @@
 package view;
 
 import controllers.FilmeController;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FilmeView {
@@ -24,35 +26,18 @@ public class FilmeView {
 
     private void cadastro(Scanner input) {
 
+        mensagem.limparTela(5);
         mensagem.layoutMensagem("               Filmes - Cadastro               ");
         System.out.println(" Preencha os dados do filme que deseja inserir: ");
-        System.out.println("----------------------------------------------");
-        System.out.print(" Nome do filme: ");
-        String nomeFilme = input.nextLine();
 
-        System.out.println("----------------------------------------------");
-        System.out.print(" Duração em minutos: ");
-        int duracao = input.nextInt();
+        ArrayList<Object> dados = formulario(input);
 
-        System.out.println("----------------------------------------------");
-        System.out.print(" Ano de lançamento: ");
-        int ano = input.nextInt();
-
-        System.out.println("----------------------------------------------");
-        System.out.print(" Id do diretor: ");
-        int idDiretor = input.nextInt();
-
-        System.out.println("----------------------------------------------");
-        System.out.print(" ID do país de origem: ");
-        int idPais = input.nextInt();
-
-        System.out.println("----------------------------------------------");
-        System.out.print(" Sinopse: ");
-        String sinopse = input.nextLine();
-
-        System.out.println("----------------------------------------------");
-
-        CONTROLLER.cadastrarFilme(nomeFilme, duracao, ano, idDiretor, idPais, sinopse);
+        CONTROLLER.cadastrarFilme((String)dados.getFirst(),
+                                    (int)dados.get(1),
+                                    (int)dados.get(2),
+                                    (int)dados.get(3),
+                                    (int)dados.get(4),
+                                    (String)dados.getLast());
     }
 
     public void edicao(Scanner input) {
@@ -66,33 +51,54 @@ public class FilmeView {
         System.out.println("------------------------------------------------");
         System.out.println(" Preencha somente os campos que deseja editar e ");
         System.out.println(" marque o restante com [0]: ");
-        System.out.println("----------------------------------------------");
+
+        ArrayList<Object> dados = formulario(input);
+
+        CONTROLLER.editarFilme(idFilme,
+                                (String)dados.getFirst(),
+                                (int)dados.get(1),
+                                (int)dados.get(2),
+                                (int)dados.get(3),
+                                (int)dados.get(4),
+                                (String)dados.getLast());
+    }
+
+    private ArrayList<Object> formulario(Scanner input) {
+        var dados = new ArrayList<>();
+
+        System.out.println("------------------------------------------------");
         System.out.print(" Nome do filme: ");
         input.nextLine();
         String nomeFilme = input.nextLine();
+        dados.add(nomeFilme);
 
-        System.out.println("----------------------------------------------");
+        System.out.println("------------------------------------------------");
         System.out.print(" Duração em minutos: ");
         int duracao = input.nextInt();
+        dados.add(duracao);
 
-        System.out.println("----------------------------------------------");
+        System.out.println("------------------------------------------------");
         System.out.print(" Ano de lançamento: ");
         int ano = input.nextInt();
+        dados.add(ano);
 
-        System.out.println("----------------------------------------------");
+        System.out.println("------------------------------------------------");
         System.out.print(" ID do diretor: ");
         int idDiretor = input.nextInt();
+        dados.add(idDiretor);
 
-        System.out.println("----------------------------------------------");
+        System.out.println("------------------------------------------------");
         System.out.print(" ID do país de origem: ");
         int idPais = input.nextInt();
+        dados.add(idPais);
 
-        System.out.println("----------------------------------------------");
+        System.out.println("------------------------------------------------");
         System.out.print(" Sinopse: ");
         input.nextLine();
         String sinopse = input.nextLine();
+        dados.add(sinopse);
 
-        CONTROLLER.editarFilme(idFilme, nomeFilme, duracao, ano, idDiretor, idPais, sinopse);
+        return dados;
     }
 
     public void excluir(Scanner input) {
