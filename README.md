@@ -28,6 +28,7 @@ AWS RDS (Relationa Database Service): https://aws.amazon.com/pt/rds/
 - A aplicação foi desenvolvida utilizando o Java 21, portanto, verifique a versão do Java instalada na sua máquina antes de rodar.
 - **ATENÇÃO!** O projeto utiliza duas bibliotecas externas (JDBC do banco de dados e Lombok) que se encontram na pasta "lib" do projeto. Caso a IDE utilizada não inclua automaticamente as bibliotecas será necessário incluí-las. A IDE utilizada para o desenvolvimento do projeto foi o IntelliJ. Para incluir as bibliotecas no IntelliJ é necessário ir em "File" - "Project Structure" - "Libraries" e por fim clicar no símbolo de "+" e adicionar o caminho do arquivo jar.
 ![img.png](intellij.png)
+![vid.mp4](tuto-bibliotecas.mp4)
 - Abra o terminal na pasta raiz do projeto se quiser executar por linhas de comando. Caso contrário, utilize a sua IDE de preferência para rodar o projeto.
 - Executar os seguintes comandos no terminal.
   - javac Main.java
