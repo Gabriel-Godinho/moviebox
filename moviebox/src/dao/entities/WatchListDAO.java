@@ -8,6 +8,7 @@ import view.MensagensView;
 import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class WatchListDAO {
@@ -35,6 +36,24 @@ public class WatchListDAO {
         }
 
         return watchList;
+    }
+
+    public final String getDataInsercaoFilme(long idFilme) {
+        try {
+            Connection conn = DataBaseConnection.getInstance().getConn();
+            String sql = "SELECT data_insercao_filme FROM watchlist WHERE id_filme = ?";
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                return resultSet.getDate("data_insercao_filme").toLocalDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            }
+
+        } catch (SQLException e) {
+            mensagem.layoutMensagem("Erro ao mostrar a watchlist!");
+        }
+
+        return "";
     }
 
     public final boolean existsFilmeInWatchList(long idFilme) {
