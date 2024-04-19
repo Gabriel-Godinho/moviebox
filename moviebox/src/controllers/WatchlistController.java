@@ -8,7 +8,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class WatchlistController {
 
@@ -35,7 +38,8 @@ public class WatchlistController {
     public void mostrar() {
         MENSAGEM_VIEW.layoutMensagem("                   WATCHLIST                   ");
 
-        for (WatchListItem watchlistItem : WATCHLIST_DAO.getWatchList().getItensWatchList()) {
+        List<WatchListItem> watchlistOrdenada = WATCHLIST_DAO.getWatchList().getItensWatchList().stream().sorted(Comparator.comparing(WatchListItem::getDataInsercaoFilme)).toList();
+        for (WatchListItem watchlistItem : watchlistOrdenada) {
             SimpleDateFormat sdfBanco = new SimpleDateFormat("yyyy-MM-dd");
             Date dataBanco;
 
