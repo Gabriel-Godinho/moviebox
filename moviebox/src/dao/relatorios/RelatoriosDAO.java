@@ -36,7 +36,7 @@ public class RelatoriosDAO {
 
             while (resultSet.next()) {
                 Filme filme = new Filme();
-                filme.setIdDiretor(resultSet.getLong("id_filme"));
+                filme.setIdFilme(resultSet.getLong("id_filme"));
                 filme.setNomeFilme(resultSet.getString("nome_filme"));
                 filme.setDuracao(resultSet.getInt("duracao"));
                 filme.setAno(resultSet.getInt("ano"));
@@ -74,7 +74,7 @@ public class RelatoriosDAO {
 
             while (resultSet.next()) {
                 Filme filme = new Filme();
-                filme.setIdDiretor(resultSet.getLong("id_filme"));
+                filme.setIdFilme(resultSet.getLong("id_filme"));
                 filme.setNomeFilme(resultSet.getString("nome_filme"));
                 filme.setDuracao(resultSet.getInt("duracao"));
                 filme.setAno(resultSet.getInt("ano"));
